@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>电商数据分析大屏首页</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}" />
+</head>
+
+<body>
+    <header id="header">
+        <h3 class="header-title">电商数据分析大屏</h3>
+    </header>
+    <div id="container">
+        <div id="flexCon">
+            <div class="flex-row" style="margin-bottom: -20px">
+                <div class="flex-cell flex-cell-l">
+                    <div class="chart-wrapper">
+                        <a href="item/" class="item"><div class="chart-title"> Top5转化率商品</div></a>
+                        <div class="chart-div  chart-div-bg">
+                            <div class="chart-loader">
+                                <!--                                    <div class="loader"></div>-->
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>序号</th>
+                                            <th>品类</th>
+                                            <th>销量</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>衣服</td>
+                                            <td>26,654,546</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>食物</td>
+                                            <td>11,776,645</td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>百货</td>
+                                            <td>7,776,885</td>
+                                        </tr>
+                                        <tr>
+                                            <td>4</td>
+                                            <td>美妆</td>
+                                            <td>5,744,744</td>
+                                        </tr>
+                                        <tr>
+                                            <td>5</td>
+                                            <td>电子产品</td>
+                                            <td>3,575,567</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color:#00A9E4">汇总</td>
+                                            <td></td>
+                                            <td style="color:#00A9E4">55,538,387</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-cell flex-cell-c">
+                    <!--                        <div class="chart-wrapper">-->
+                    <!--                            <h3 class="chart-title"></h3>-->
+                    <!--                            <div class="chart-div">-->
+                    <!--                                <div class="flex-row">hhh</div>-->
+                    <!--                                <div class="flex-row">www</div>-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <div class="flex-row" style="height:180px;margin-bottom: -5px">
+                        <div class="flex-cell-l">
+                            <div class="chart-wrapper">
+                                <div class="chart-div chart-div-bg">
+                                    <div class="chart-loader">
+                                        <div class="textSpan">点击</div>
+                                        <div class="numberSpan" style="color: #FFDC3D">
+                                            <ul id="changeNumber1">
+                                                <li>636,282</li>
+                                                <li>646,576</li>
+                                                <li>656,092</li>
+                                                <li>738,137</li>
+                                                <li>697,101</li>
+                                                <li>891,366</li>
+                                                <li>1,084,594</li>
+                                                <li>876,661</li>
+                                                <li>1,037,942</li>
+                                                <li>644,361</li>
+                                                <li>629,065</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex-cell-r">
+                            <div class="chart-wrapper">
+                                <div class="chart-div  chart-div-bg">
+                                    <div class="chart-loader">
+                                        <div class="textSpan">收藏</div>
+                                        <div class="numberSpan" style="color: #F490B2">
+                                            <ul id="changeNumber2">
+                                                <li>22,046</li>
+                                                <li>21,553</li>
+                                                <li>21,459</li>
+                                                <li>24,105</li>
+                                                <li>21,925</li>
+                                                <li>28,696</li>
+                                                <li>29,445</li>
+                                                <li>25,458</li>
+                                                <li>27,625</li>
+                                                <li>20,647</li>
+                                                <li>20,445</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex-row" style="height: 180px">
+                        <div class="flex-cell-l">
+                            <div class="chart-wrapper">
+                                <div class="chart-div  chart-div-bg">
+                                    <div class="chart-loader">
+                                        <div class="textSpan">加入购物车</div>
+                                        <div class="numberSpan" style="color: #99D44D">
+                                            <ul id="changeNumber3">
+                                                <li>58,829</li>
+                                                <li>59,921</li>
+                                                <li>61,734</li>
+                                                <li>72,209</li>
+                                                <li>68,420</li>
+                                                <li>97,355</li>
+                                                <li>135,711</li>
+                                                <li>100,733</li>
+                                                <li>128,266</li>
+                                                <li>61,264</li>
+                                                <li>61,720</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex-cell-r">
+                            <div class="chart-wrapper">
+                                <div class="chart-div  chart-div-bg">
+                                    <div class="chart-loader">
+                                        <div class="textSpan">购买</div>
+                                        <div class="numberSpan" style="color: #00A9E4">
+                                            <ul id="changeNumber4">
+                                                <li>15,757</li>
+                                                <li>16,051</li>
+                                                <li>16,765</li>
+                                                <li>12,241</li>
+                                                <li>10,602</li>
+                                                <li>9,674</li>
+                                                <li>79,593</li>
+                                                <li>32,242</li>
+                                                <li>61,809</li>
+                                                <li>17,220</li>
+                                                <li>19,303</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-cell flex-cell-r">
+                    <div class="chart-wrapper">
+                        <a href="user/" class="user"><div class="chart-title">用户画像</div></a>
+                        <div class="chart-div  chart-div-bg">
+                            <div class="chart-loader" id="rGraph">
+                                <!--                                    <div class="loader"></div>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex-row">
+                <div class="flex-cell flex-cell-lc">
+                    <div class="chart-wrapper">
+                        <div class="chart-div  chart-div-bg">
+                            <div class="chart-loader" id="lcGraph">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-cell flex-cell-r">
+                    <div class="chart-wrapper">
+                        <div class="chart-div  chart-div-bg">
+                            <div class="chart-loader" id="lrGraph">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/echarts.min.js') }}"></script>
+    <script type="text/javascript">
+    $(function() {
+
+        /*      右上        */
+        const rGraph = echarts.init(document.getElementById("rGraph"));
+        const rOpt = {
+            title: {
+                text: '用户类别',
+                textStyle: {
+                    color: '#fff',
+                    fontSize: 12
+                }
+            },
+            tooltip: {
+
+            },
+            legend: {
+                // data: ['预算分配（Allocated Budget）', '实际开销（Actual Spending）']
+                data: ['品质生活者', '月光剁手族', '精明实用者'],
+                textStyle: {
+                    color: '#fff'
+                },
+                right: 20,
+            },
+            radar: {
+                // shape: 'circle',
+                name: {
+                    textStyle: {
+                        color: '#fff',
+                        // backgroundColor: '#999',
+                        borderRadius: 3,
+                        padding: [3, 5, -13, 5]
+                    }
+                },
+                indicator: [
+                    { name: '收入', max: 6500 },
+                    { name: '阶级', max: 16000 },
+                    { name: '购买量', max: 30000 },
+                    { name: '购买单价', max: 38000 },
+                    { name: '教育水平', max: 52000 }
+                ]
+            },
+            series: [{
+                name: '用户类别',
+                type: 'radar',
+                areaStyle: {
+                    normal: {
+                        // color:'transparent'
+                    },
+
+                },
+                data: [{
+                        value: [4300, 10000, 28000, 35000, 50000, 19000],
+                        name: '品质生活者',
+                        itemStyle: {
+
+                        }
+                    },
+                    {
+                        value: [5000, 14000, 28000, 31000, 42000, 21000],
+                        name: '月光剁手族',
+                        lineStyle: {
+                            color: '#8773FF'
+                        }
+                    },
+                    {
+                        value: [5000, 12000, 24000, 26000, 30000, 25000],
+                        name: '精明实用者',
+                        lineStyle: {
+                            color: '#F269F8'
+                        }
+                    }
+                ],
+
+            }]
+        };
+        rGraph.setOption(rOpt);
+
+
+
+        /*        左下          */
+        const lcGraph = echarts.init(document.getElementById("lcGraph"));
+        const lcOpt = {
+            title: {
+                text: '                            用户每天行为变化',
+                textStyle: {
+                    color: '#00A9E4',
+                    fontSize: 14,
+
+                }
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'cross',
+                    crossStyle: {
+                        color: '#fff'
+                    }
+                }
+            },
+            toolbox: {
+                feature: {
+                    dataView: { show: false, readOnly: false },
+                    magicType: { show: true, type: ['line', 'bar'] },
+                    restore: { show: true },
+                    saveAsImage: { show: false }
+                }
+            },
+            legend: {
+                data: ['点击', '收藏', '加入购物车', '购买'],
+                textStyle: {
+                    color: '#fff'
+                }
+            },
+            xAxis: [{
+                type: 'category',
+                data: ['6-10', '6-11', '6-12', '6-13', '6-14', '6-15', '6-16', '6-17', '6-18', '6-19', '6-20'],
+                axisPointer: {
+                    type: 'shadow'
+                },
+                textStyle: {
+                    color: '#fff'
+                }
+            }],
+            yAxis: [{
+                    type: 'value',
+                    name: '数量',
+                    min: 0,
+                    max: 1100000,
+                    interval: 400000,
+                    axisLabel: {
+                        formatter: '{value} '
+                    },
+                    splitLine: {
+                        show: false
+                    }
+                },
+                {
+                    type: 'value',
+                    name: '百分比',
+                    min: 0,
+                    max: 100,
+                    interval: 50,
+                    axisLabel: {
+                        formatter: '{value} %'
+                    },
+                    splitLine: {
+                        show: false
+                    }
+                }
+            ],
+            series: [{
+                    name: '点击',
+                    type: 'bar',
+                    data: [636282, 646576, 656092, 738137, 697101, 891366, 1084594, 876661, 1037942, 644361, 629065]
+                },
+                {
+                    name: '收藏',
+                    type: 'bar',
+                    data: [22046, 21553, 21459, 24105, 21925, 28696, 29445, 25458, 27625, 20647, 20445]
+                },
+                {
+                    name: '加入购物车',
+                    type: 'bar',
+                    data: [58829, 59921, 61734, 72209, 68420, 97355, 135711, 100733, 128266, 61264, 61720]
+                },
+                {
+                    name: '购买',
+                    type: 'bar',
+                    // yAxisIndex: 1,
+                    data: [15757, 16051, 16765, 12241, 10602, 9674, 79593, 32242, 61809, 17220, 19303]
+                }
+            ],
+            textStyle: {
+                color: '#fff'
+            }
+        };
+        lcGraph.setOption(lcOpt);
+
+
+
+        /*        右下        */
+        const lrGraph = echarts.init(document.getElementById("lrGraph"));
+
+
+        let data = [
+            [
+                [0, 1, 160000000, '品质生活者', '电子'],
+                [0, 2, 20000000, '月光剁手族', '电子'],
+                [0, 3, 40000000, '精明实用者', '电子']
+            ],
+            [
+                [1, 1, 10000000, '品质生活者', '百货'],
+                [1, 2, 30000000, '月光剁手族', '百货'],
+                [1, 3, 160000000, '精明实用者', '百货']
+            ],
+            [
+                [2, 1, 60000000, '品质生活者', '美妆'],
+                [2, 2, 110000000, '月光剁手族', '美妆'],
+                [2, 3, 30000000, '精明实用者', '美妆']
+            ],
+            [
+                [3, 1, 50000000, '品质生活者', '衣服'],
+                [3, 2, 120000000, '月光剁手族', '衣服'],
+                [3, 3, 30000000, '精明实用者', '衣服']
+            ],
+            [
+                [4, 1, 20000000, '品质生活者', '食物'],
+                [4, 2, 110000000, '月光剁手族', '食物'],
+                [4, 3, 70000000, '精明实用者', '食物']
+            ]
+
+        ];
+
+        const lrOpt = {
+
+            title: {
+                text: '        商品推荐',
+                textStyle: {
+                    color: '#00A9E4',
+                    fontSize: 14,
+
+                }
+            },
+            legend: {
+                right: 10,
+                data: ['电子', '百货', '美妆', '衣服', '食物'],
+                textStyle: {
+                    color: '#fff'
+                }
+            },
+            xAxis: {
+                show: false,
+                splitLine: {
+
+                    lineStyle: {
+                        type: 'dashed'
+                    }
+                }
+            },
+            yAxis: {
+                show: false,
+                splitLine: {
+                    show: false,
+                    lineStyle: {
+                        type: 'dashed'
+                    }
+                },
+                scale: true
+            },
+            series: [{
+                    name: '电子',
+                    data: data[0],
+                    type: 'scatter',
+                    symbolSize: function(data) {
+                        return Math.sqrt(data[2]) / 5e2;
+                    },
+                    label: {
+                        emphasis: {
+                            show: true,
+                            formatter: function(param) {
+                                return param.data[3];
+                            },
+                            position: 'top'
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            shadowBlur: 10,
+                            shadowColor: 'rgba(120, 36, 50, 0.5)',
+                            shadowOffsetY: 5,
+                            color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
+                                offset: 0,
+                                color: 'rgb(251, 118, 123)'
+                            }, {
+                                offset: 1,
+                                color: 'rgb(204, 46, 72)'
+                            }])
+                        }
+                    }
+                }, {
+                    name: '百货',
+                    data: data[1],
+                    type: 'scatter',
+                    symbolSize: function(data) {
+                        return Math.sqrt(data[2]) / 5e2;
+                    },
+                    label: {
+                        emphasis: {
+                            show: true,
+                            formatter: function(param) {
+                                return param.data[3];
+                            },
+                            position: 'top'
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            shadowBlur: 10,
+                            shadowColor: 'rgba(25, 100, 150, 0.5)',
+                            shadowOffsetY: 5,
+                            color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
+                                offset: 0,
+                                color: 'rgb(129, 227, 238)'
+                            }, {
+                                offset: 1,
+                                color: 'rgb(25, 183, 207)'
+                            }])
+                        }
+                    }
+                },
+                {
+                    name: '美妆',
+                    data: data[2],
+                    type: 'scatter',
+                    symbolSize: function(data) {
+                        return Math.sqrt(data[2]) / 5e2;
+                    },
+                    label: {
+                        emphasis: {
+                            show: true,
+                            formatter: function(param) {
+                                return param.data[3];
+                            },
+                            position: 'top'
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            shadowBlur: 10,
+                            shadowColor: 'rgba(25, 100, 150, 0.5)',
+                            shadowOffsetY: 5,
+                            color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
+                                offset: 0,
+                                color: '#F269F8'
+                            }, {
+                                offset: 1,
+                                color: '#D55EE0'
+                            }])
+                        }
+                    }
+                },
+                {
+                    name: '衣服',
+                    data: data[3],
+                    type: 'scatter',
+                    symbolSize: function(data) {
+                        return Math.sqrt(data[2]) / 5e2;
+                    },
+                    label: {
+                        emphasis: {
+                            show: true,
+                            formatter: function(param) {
+                                return param.data[3];
+                            },
+                            position: 'top'
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            shadowBlur: 10,
+                            shadowColor: 'rgba(25, 100, 150, 0.5)',
+                            shadowOffsetY: 5,
+                            color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
+                                offset: 0,
+                                color: '#8773FF'
+                            }, {
+                                offset: 1,
+                                color: '#7867EA'
+                            }])
+                        }
+                    }
+                },
+                {
+                    name: '食物',
+                    data: data[4],
+                    type: 'scatter',
+                    symbolSize: function(data) {
+                        return Math.sqrt(data[2]) / 5e2;
+                    },
+                    label: {
+                        emphasis: {
+                            show: true,
+                            formatter: function(param) {
+                                return param.data[3];
+                            },
+                            position: 'top'
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            shadowBlur: 10,
+                            shadowColor: 'rgba(25, 100, 150, 0.5)',
+                            shadowOffsetY: 5,
+                            color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
+                                offset: 0,
+                                color: '#DDBC00'
+                            }, {
+                                offset: 1,
+                                color: '#FFDC3D'
+                            }])
+                        }
+                    }
+                }
+            ]
+        };
+        lrGraph.setOption(lrOpt);
+
+
+        window.onresize = function() {
+            rGraph.resize();
+            lcGraph.resize();
+            lrGraph.resize();
+        }
+
+    });
+
+    function changeText() {
+        let changeNumber1 = document.getElementById("changeNumber1");
+        changeNumber1.appendChild(changeNumber1.firstChild);
+        let changeNumber2 = document.getElementById("changeNumber2");
+        changeNumber2.appendChild(changeNumber2.firstChild);
+        let changeNumber3 = document.getElementById("changeNumber3");
+        changeNumber3.appendChild(changeNumber3.firstChild);
+        let changeNumber4 = document.getElementById("changeNumber4");
+        changeNumber4.appendChild(changeNumber4.firstChild);
+    }
+    setInterval("changeText()", 1000);
+    </script>
+</body>
+
+</html>

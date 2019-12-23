@@ -1,4 +1,4 @@
-# E-commerce-data-visualization
+﻿# E-commerce-data-visualization
 One of 2019 Zhejiang University software college training program
 
 ## 电商数据可视化
@@ -14,3 +14,7 @@ One of 2019 Zhejiang University software college training program
 - 商品页
 - 用户页
 
+
+### 使用说明
+- 从requirements.txt安装依赖
+pip install -r requirements.txt
