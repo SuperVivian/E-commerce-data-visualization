@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>电商大屏</title>
+    <link rel="stylesheet" type="text/css" href="css/app.css" />
+</head>
+
+<body>
+    <div class="header">
+        <h1 class="header-title">用 户 画 像</h1>
+        <div class="header-info header-info-l">数据来源：淘宝</div>
+        <div class="header-info header-info-r">数据日期：<span id="nowDate"></span></div>
+    </div>
+    <footer id="footer"></footer>
+    <div class="wrapper">
+        <div class="content">
+            <div class="col col-l">
+                <div class="xpanel-wrapper xpanel-wrapper-40">
+                    <div class="xpanel xpanel-c-b">
+                        <div class="title title-long">基础信息</div>
+                        <div class="xpanel-wrapper xpanel-wrapper-70">
+                            <div class="chart-div" id="ageChart">
+                                <div class="chart-loader">
+                                    <div class="loader"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="xpanel-wrapper xpanel-wrapper-30" id="gender">
+                            <table class="data-t">
+                                <tr>
+                                    <th><img src="img/male.png" /></th>
+                                    <td>
+                                        <p><span>34%</span></p>
+                                    </td>
+                                    <th><img src="img/female.png" /></th>
+                                    <td>
+                                        <p><span>66%</span></p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="xpanel-wrapper xpanel-wrapper-60">
+                    <div class="xpanel xpanel-c-b">
+                        <div class="title title-long">社会信息</div>
+                        <div class="xpanel-wrapper xpanel-wrapper-40">
+                            <div class="chart-div" id="careerChart">
+                                <div class="chart-loader">
+                                    <div class="loader"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="xpanel-wrapper xpanel-wrapper-60">
+                            <div class="content">
+                                <div class="col col-l">
+                                    <div class="xpanel-wrapper">
+                                        <div class="chart-div" id="eduChart">
+                                            <div class="chart-loader">
+                                                <div class="loader"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col col-r">
+                                    <div class="xpanel-wrapper">
+                                        <div class="chart-div" id="incChart">
+                                            <div class="chart-loader">
+                                                <div class="loader"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col col-c">
+                <div class="xpanel-wrapper xpanel-wrapper-30">
+                    <div class="xpanel no-bg">
+                        <table class="data-t">
+                            <tr>
+                                <th><img src="img/users1.png" /></th>
+                                <td>
+                                    <p><span id="totalUser">0</span></p>
+                                    <p>总用户数</p>
+                                </td>
+                                <th><img src="img/users2.png" /></th>
+                                <td>
+                                    <p><span id="activeUser">0</span></p>
+                                    <p>活跃用户数</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="xpanel-wrapper xpanel-wrapper-70">
+                    <div class="xpanel xpanel-c-b">
+                        <div class="title title-long">地域分布</div>
+                        <div class="chart-div" id="mapChart">
+                            <div class="chart-loader">
+                                <div class="loader"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col col-r">
+                <div class="xpanel xpanel-c-b">
+                    <div class="title title-long">用户画像</div>
+                    <div class="xpanel-wrapper xpanel-wrapper-30">
+                        <div class="persona-info">
+                            <img src="img/user1.png" />
+                            <p>品质生活者</p>
+                        </div>
+                        <div class="chart-div" id="usrChart1">
+                            <div class="chart-loader">
+                                <div class="loader"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="xpanel-wrapper xpanel-wrapper-30">
+                        <div class="persona-info">
+                            <img src="img/user2.png" />
+                            <p>月光剁手族</p>
+                        </div>
+                        <div class="chart-div" id="usrChart2">
+                            <div class="chart-loader">
+                                <div class="loader"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="xpanel-wrapper xpanel-wrapper-30">
+                        <div class="persona-info">
+                            <img src="img/user3.png" />
+                            <p>精明实用者</p>
+                        </div>
+                        <div class="chart-div" id="usrChart3">
+                            <div class="chart-loader">
+                                <div class="loader"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="js/countUp.min.js"></script>
+    <script type="text/javascript" src="js/echarts.min.js"></script>
+    <script type="text/javascript" src="js/echarts-map-china.js"></script>
+    <script type="text/javascript" src="js/echarts-theme-shine.js"></script>
+    <script type="text/javascript" src="js/usrinfo.js"></script>
+    <script type="text/javascript" src="js/personas.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        //获取当天日期
+        (function() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = now.getMonth() + 1;
+            const day = now.getDate();
+            $("#nowDate").html(year + "年" + month + "月" + day + "日");
+        })();
+
+        //获取统计数据
+        $.ajax({
+            url: "data/count-data.json",
+            dataType: "json"
+        }).done(function(data) {
+            //console.log('Data: ', data);
+            rollNum("totalUser", 0, data.total_user);
+            rollNum("activeUser", 0, data.active_user)
+        }).fail(function(jqXHR, textStatus) {
+            console.log("Ajax Error: ", textStatus);
+        });
+
+        //获取地域分布数据
+        const mapChart = echarts.init(document.getElementById("mapChart"), "shine");
+        const mapChartOpt = {
+            tooltip: {
+                formatter: function(params) {
+                    const data = params.data;
+                    return data.name + "<br />用户数：" + data.value;
+                }
+            },
+            visualMap: {
+                type: "piecewise",
+                splitNumber: 6,
+                itemWidth: 10,
+                itemHeight: 10,
+                itemGap: 5,
+                textGap: 5,
+                textStyle: {
+                    fontSize: 10,
+                    color: "#b0c2f9"
+                },
+                min: 0,
+                max: 600,
+                calculable: true,
+                seriesIndex: [0]
+            },
+            geo: {
+                map: "china",
+                roam: true, //开启鼠标缩放和漫游
+                zoom: 1, //地图缩放级别
+                selectedMode: "single",
+                top: 10,
+                bottom: 10,
+                layoutCenter: ["50%", "50%"],
+                //layoutSize: "100%", //保持地图宽高比
+                label: {
+                    show: true,
+                    fontSize: 10,
+                    color: "#ceac09"
+                }
+            },
+            series: [{
+                name: "地域分布",
+                type: "map",
+                geoIndex: 0
+            }]
+        };
+        mapChart.setOption(mapChartOpt);
+        $.ajax({
+            url: "data/region-count.json",
+            dataType: "json"
+        }).done(function() {
+            $("#mapChart").addClass("chart-done");
+        }).done(function(data) {
+            //console.log('Data: ', data);
+            const chartData = [];
+            for (let i in data) {
+                chartData.push({
+                    name: data[i].region,
+                    value: data[i].count
+                });
+            }
+            mapChart.setOption({
+                series: [{
+                    name: "地域分布",
+                    data: chartData
+                }]
+            });
+        }).fail(function(jqXHR) {
+            console.log("Ajax Fail: ", jqXHR.status, jqXHR.statusText);
+        });
+
+    });
+
+
+
+
+    //数字变化特效
+    function rollNum(elId, startVal, endVal, decimalNum) {
+        let n = decimalNum || 0;
+        let countUp = new CountUp(elId, startVal, endVal, n, 2.5, {
+            useEasing: true,
+            useGrouping: true,
+            separator: ',',
+            decimal: '.'
+        });
+        if (!countUp.error) {
+            countUp.start();
+        } else {
+            console.error(countUp.error);
+        }
+    }
+    </script>
+</body>
+
+</html>
