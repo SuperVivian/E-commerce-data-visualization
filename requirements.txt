@@ -94,7 +94,7 @@ six==1.10.0
 sklearn==0.0
 snownlp==0.12.3
 SQLAlchemy==1.1.14
-tensorflow==1.4.0
+tensorflow==1.15.2
 tensorflow-tensorboard==0.4.0rc3
 traitlets==4.3.2
 Twisted==18.9.0
