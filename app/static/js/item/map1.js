@@ -2,6 +2,7 @@ $(function () {
     /******************* 漏斗图 ******************/
     //初始化echarts实例
     const flyMap = echarts.init(document.getElementById("flyMap"));
+    var target_data= Server.my_data;
     //报表配置项
     const flyMapOpt = {
         tooltip: {
@@ -33,23 +34,7 @@ $(function () {
                     type: 'solid'
                 }
             },
-            data: [{
-                    value: 10,
-                    name: '10%'                    
-                },
-                {
-                    value: 40,
-                    name: '40%'
-                },
-                {
-                    value: 60,
-                    name: '60%'
-                },
-                {
-                    value: 100,
-                    name: '100%'
-                }
-            ]
+            data: target_data
         },{
             name: '漏斗图',
             type: 'funnel',
@@ -75,23 +60,7 @@ $(function () {
                     type: 'solid'
                 }
             },
-            data: [{
-                    value: 10,
-                    name: '购买'                    
-                },
-                {
-                    value: 40,
-                    name: '收藏'
-                },
-                {
-                    value: 60,
-                    name: '购物车'
-                },
-                {
-                    value: 100,
-                    name: '点击'
-                }
-            ]
+            data: target_data
         }]
     };
     //渲染报表
