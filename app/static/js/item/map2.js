@@ -5,7 +5,7 @@ $(function () {
 
     //地图配置项
     const sactterMapOpt = {
-        color: ['#00CDE7', '#2692DC', '#5548CF'],
+        color: ['#F490B2', '#4086F2', '#7867EA'],
         tooltip: {
             trigger: 'axis'
         },
@@ -18,6 +18,32 @@ $(function () {
             }
         },
         radar: [{
+                shape:'circle',
+                splitNumber:4,
+                splitArea : {
+                show : false,
+                areaStyle : {
+                    color: 'transparent', // 图表背景的颜色
+                    },
+                },
+                splitLine : {
+                    show : true,
+                    lineStyle : {
+                        width : 2,
+                        color : '#103467', // 设置网格的颜色
+                    },
+                },
+                name: {
+                    textStyle: {
+                        color: '#fff',
+                        borderRadius: 3,
+                    }
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: '#103467',
+                        },
+                },
                 indicator: [{
                         text: '电器',
                         max: 100
@@ -54,7 +80,7 @@ $(function () {
                         max: 100
                     }
                 ],
-                center: ['20%', '40%'],
+                center: ['16.5%', '40%'],
                 radius: 60,
                 // axisLine: {
                 //     lineStyle: {
@@ -73,6 +99,32 @@ $(function () {
                 // },
             },
             {
+                shape:'circle',
+                splitNumber:4,
+                splitArea : {
+                show : false,
+                areaStyle : {
+                    color: 'transparent', // 图表背景的颜色
+                    },
+                },
+                splitLine : {
+                    show : true,
+                    lineStyle : {
+                        width : 2,
+                        color : '#103467', // 设置网格的颜色
+                    },
+                },
+                name: {
+                    textStyle: {
+                        color: '#fff',
+                        borderRadius: 3,
+                    }
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: '#103467',
+                        },
+                },
                 indicator: [{
                         text: '电器',
                         max: 100
@@ -115,6 +167,32 @@ $(function () {
                 
             },
             {
+                shape:'circle',
+                splitNumber:4,
+                splitArea : {
+                show : false,
+                areaStyle : {
+                    color: 'transparent', // 图表背景的颜色
+                    },
+                },
+                splitLine : {
+                    show : true,
+                    lineStyle : {
+                        width : 2,
+                        color : '#103467', // 设置网格的颜色
+                    },
+                },
+                name: {
+                    textStyle: {
+                        color: '#fff',
+                        borderRadius: 3,
+                    }
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: '#103467',
+                        },
+                },
                 indicator: [{
                         text: '电器',
                         max: 100
@@ -152,21 +230,26 @@ $(function () {
                         max: 100
                     }
                 ],
-                center: ['80%', '40%'],
+                center: ['83.5%', '40%'],
                 radius: 60
             }
         ],
         series: [{
                 type: 'radar',
+                symbol:'circle',
+                symbolSize:8,
                 tooltip: {
                     trigger: 'item'
                 },
-                itemStyle: {
+                areaStyle: {
                     normal: {
-                        areaStyle: {
-                            type: 'default'
-                        }
-                    }
+                        color:'transparent',
+                        width:1,
+                        opacity:0.2
+
+                    },
+
+
                 },
                 data: [{
                     value: [60, 73, 85, 40, 50, 84, 76, 56, 99],
@@ -175,15 +258,20 @@ $(function () {
             },
             {
                 type: 'radar',
+                symbol:'circle',
+                symbolSize:8,
                 tooltip: {
                     trigger: 'item'
                 },
-                itemStyle: {
+                areaStyle: {
                     normal: {
-                        areaStyle: {
-                            type: 'default'
-                        }
-                    }
+                        color:'transparent',
+                        width:1,
+                        opacity:0.2
+
+                    },
+
+
                 },
                 radarIndex: 1,
                 data: [{
@@ -195,16 +283,21 @@ $(function () {
             },
             {
                 type: 'radar',
+                symbol:'circle',
+                symbolSize:8,
                 radarIndex: 2,
                 tooltip: {
                     trigger: 'item'
                 },
-                itemStyle: {
+                areaStyle: {
                     normal: {
-                        areaStyle: {
-                            type: 'default'
-                        }
-                    }
+                        color:'transparent',
+                        width:1,
+                        opacity:0.2
+
+                    },
+
+
                 },
                 data: [{
                     name: '40-60岁',

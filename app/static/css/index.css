@@ -12,7 +12,7 @@ html, body {
 body {
 	position:relative;
 	font-family:"Microsoft Yahei", Arial, sans-serif;
-	background:#050d3c url("../img/bg.png") 0 0 / 100% 100% no-repeat;
+	background:#0b0f34 url("../img/bg.png") 0 0 / 100% 100% no-repeat;
 }
 a{
 	text-decoration: none;
@@ -25,7 +25,22 @@ a{
 	background:url("../img/header.png") 0 0 / 100% 100% no-repeat;
 	overflow:hidden;
 }
+
 .header-title {line-height:64px;text-align:center;font-size:32px;font-weight:400;color:#bef2ff;}
+
+.header-info {position:absolute;top:16px;font-size:14px;color:#73aae5;}
+.header-info-l {left:18px;}
+.header-info-r {right:18px;}
+
+#footer {
+	position:absolute;
+	bottom:0;
+	left:0;
+	right:0;
+	height:28px;
+	background:url("../img/user/footer.png") 0 0 / 100% 100% no-repeat;
+}
+
 #container {position:absolute;top:64px;bottom:15px;left:0;right:0;}
 
 #flexCon {
@@ -54,27 +69,31 @@ a{
 
 .chart-wrapper {position:relative;height:100%;}
 .chart-title {
-	height:40px;
+	height:24px;
 	width: 100%;
-	font-size:8px;
+	font-size:16px;
 	font-weight:normal;
 	color:#fff;
-	background: url("../img/titleImg") 0 0 / 100% 100% no-repeat;
+	background: url("../img/title_bg.png") 0 0 / 100% 100% no-repeat;
 	text-align: center;
-
 }
 .chart-div {
-	position:absolute;
+	position:relative;
 	top:30px;
 	bottom:0;
 	left:0;
 	right:0;
 	border-style:solid;
 	border-width:26px 27px 27px;
+	height: 100%;
+
 
 }
 .chart-div-bg{
+
 	border-image:url("../img/borderImg") 26 27 27 fill / 1 / 0 repeat;
+
+
 }
 
 /* media query */
@@ -87,10 +106,12 @@ a{
 	.chart-div {top:24px;}
 }
 
+
+
 /* chart-loader */
 .chart-loader {
 	position:absolute;
-	top:0;
+	top:20px;
 	left:0;
 	z-index:99;
 	width:100%;
@@ -98,7 +119,7 @@ a{
 	background:rgba(255, 255, 255, 0);
 	transition:all .8s;
 }
-.chart-loader .loader {
+.chart-loader loader {
 	position:absolute;
 	left:50%;
 	top:50%;
@@ -111,7 +132,7 @@ a{
 	-webkit-animation:spin 2s linear infinite;
 	animation:spin 2s linear infinite;
 }
-.chart-loader .loader:before {
+.chart-loader loader:before {
 	content:"";
 	position:absolute;
 	top:3px;
@@ -124,7 +145,7 @@ a{
 	-webkit-animation:spin 3s linear infinite;
 	animation:spin 3s linear infinite;
 }
-.chart-loader .loader:after {
+.chart-loader loader:after {
 	content:"";
 	position:absolute;
 	top:9px;
@@ -167,13 +188,15 @@ table{
 	border: 1.8px solid #0D294C;
 	border-collapse: collapse;
 	border-spacing: 0;
+	font-size: 14px;
+	margin-top: 20px;
 }
 th,td{
 	border: 1.8px solid #0D294C;
 	text-align: center;
 	color: #fff;
-	font-size: 12px;
-	padding: 8px 40px;
+	font-size: 14px;
+	padding: 8px 41px;
 }
 .textSpan{
 	text-align: center;

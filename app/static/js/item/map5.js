@@ -1,7 +1,7 @@
 $(function () {
 	/******************* 柱状图 ******************/
 	//初始化echarts实例
-	var colors = ['#FFCDE7', '#d14a61', '#5793f3', '#675bba', ];
+	var colors = ['#FFCDE7', '#DDBC00', '#5793f3', '#675bba', ];
 	const barMap = echarts.init(document.getElementById("barMap"));
 	const barMapOpt = {
 		color: colors,
@@ -78,7 +78,15 @@ $(function () {
 		series: [{
 				name: '点击量',
 				type: 'bar',
-				data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0]
+				data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0],
+				itemStyle:{
+					emphasis:{
+						barBorderRadius:7,
+					},
+					normal:{
+						barBorderRadius: 7,
+					}
+				}
 			},
 			{
 				name: '购买量',
@@ -90,14 +98,30 @@ $(function () {
 				name: '购物车量',
 				type: 'bar',
 				yAxisIndex: 1,
-				data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8]
+				data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8],
+				itemStyle:{
+					emphasis:{
+						barBorderRadius:7,
+					},
+					normal:{
+						barBorderRadius: 7,
+					}
+				}
 			},
 
 			{
 				name: '收藏量',
 				type: 'bar',
 				yAxisIndex: 1,
-				data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8]
+				data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8],
+				itemStyle:{
+					emphasis:{
+						barBorderRadius:7,
+					},
+					normal:{
+						barBorderRadius: 7,
+					}
+				}
 			}
 
 		]

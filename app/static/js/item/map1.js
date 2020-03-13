@@ -1,8 +1,16 @@
 $(function () {
+    //获取当天日期
+        (function() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = now.getMonth() + 1;
+            const day = now.getDate();
+            $("#nowDate").html(year + "年" + month + "月" + day + "日");
+        })();
+
     /******************* 漏斗图 ******************/
     //初始化echarts实例
     const flyMap = echarts.init(document.getElementById("flyMap"));
-    var target_data= Server.my_data;
     //报表配置项
     const flyMapOpt = {
         tooltip: {
@@ -22,7 +30,7 @@ $(function () {
             maxSize: '100%',
             sort: 'descending',
             gap: 2,
-            color: ['#00CDE7', '#2692DC', '#2692DC', '#5548CF'],
+            color: ['#99D44D', '#00D2EB', '#4086F2', '#5548CF'],
             label:{
                 show: true,
                 position: 'inside'
@@ -34,7 +42,23 @@ $(function () {
                     type: 'solid'
                 }
             },
-            data: target_data
+            data: [{
+                    value: 10,
+                    name: '10%'                    
+                },
+                {
+                    value: 40,
+                    name: '40%'
+                },
+                {
+                    value: 60,
+                    name: '60%'
+                },
+                {
+                    value: 100,
+                    name: '100%'
+                }
+            ]
         },{
             name: '漏斗图',
             type: 'funnel',
@@ -48,7 +72,7 @@ $(function () {
             maxSize: '100%',
             sort: 'descending',
             gap: 2,
-            color: ['#00CDE7', '#2692DC', '#2692DC', '#5548CF'],
+            color: ['#99D44D', '#00D2EB', '#4086F2', '#5548CF'],
             label:{
                 show: true,
                 position: 'left'
@@ -60,7 +84,23 @@ $(function () {
                     type: 'solid'
                 }
             },
-            data: target_data
+            data: [{
+                    value: 10,
+                    name: '购买'                    
+                },
+                {
+                    value: 40,
+                    name: '收藏'
+                },
+                {
+                    value: 60,
+                    name: '购物车'
+                },
+                {
+                    value: 100,
+                    name: '点击'
+                }
+            ]
         }]
     };
     //渲染报表
