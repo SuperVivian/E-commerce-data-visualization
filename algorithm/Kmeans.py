@@ -4,7 +4,7 @@ import random
 import matplotlib.pyplot as plt
 import evaluate as eva
 
-data_path = "./user_new_value1.txt"
+data_path = "./user_new_value.txt"
 
 
 # 导入数据
@@ -25,7 +25,10 @@ def cal_dis(data, clu, k):
     for i in range(len(data)):
         dis.append([])
         for j in range(k):
-            dis[i].append(m.sqrt((data[i, 0] - clu[j, 0])**2 + (data[i, 1]-clu[j, 1])**2))
+            distance=(data[i, 1] - clu[j, 1])**2 + (data[i, 3]-clu[j, 3])**2 \
+                     + (data[i, 6]-clu[j, 6])**2 + (data[i, 8]-clu[j, 8])**2 \
+                     + (data[i, 10]-clu[j, 10])**2
+            dis[i].append(m.sqrt(distance))
     return np.asarray(dis)
 
 
@@ -60,7 +63,8 @@ def center(data, clusterRes, k):
         avg_sum = sum/len(data[idx])
         clunew.append(avg_sum)
     clunew = np.asarray(clunew)
-    return clunew[:, 0: 2]
+    #return clunew[:, 0: 2]
+    return clunew
 
 
 def classify(data, clu, k):
@@ -93,18 +97,21 @@ def plotRes(data, clusterRes, clusterNum):
         x1 = [];  y1 = []
         for j in range(nPoints):
             if clusterRes[j] == i:
-                x1.append(data[j, 0])
+                x1.append(data[j, 10])
                 y1.append(data[j, 1])
         plt.scatter(x1, y1, c=color, alpha=1, marker='+')
     plt.show()
 
 
 if __name__ == '__main__':
-    k = 3                                        # 类别个数
+
+    k = 6                                        # 类别个数
     data = load_data()
-    clu = random.sample(data[:, 0:2].tolist(), k)  # 随机取质心
+    #clu = random.sample(data[:, 0:2].tolist(), k)  # 随机取质心
+    clu = random.sample(data.tolist(), k)  # 随机取质心
     clu = np.asarray(clu)
     err, clunew,  k, clusterRes = classify(data, clu, k)
+    print(clusterRes)
     while np.any(abs(err) > 0):
         print(clunew)
         err, clunew,  k, clusterRes = classify(data, clunew, k)
@@ -115,3 +122,12 @@ if __name__ == '__main__':
     nmi, acc, purity = eva.eva(clusterResult, np.asarray(data[:, 2]))
     print(nmi, acc, purity)
     plotRes(data, clusterResult, k)
+
+
+    fw = open("./classify_value.txt", 'w')  # 将要输出保存的文件地址
+    counter = 0
+    for line in open("./user_new_value.txt"):  # 读取的文件
+        fw.write(line.rstrip("\n") + "\t" + str(clusterResult[counter]))  # 将字符串写入文件中
+        # line.rstrip("\n")为去除行尾换行符
+        fw.write("\n")  # 换行
+        counter = counter+1
