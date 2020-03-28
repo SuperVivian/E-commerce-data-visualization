@@ -16,6 +16,8 @@ def create_app(config_name):
     from .item import item as item_blueprint
     app.register_blueprint(item_blueprint, url_prefix='/item')
 
+    from .route import route as route_blueprint
+    app.register_blueprint(route_blueprint, url_prefix='/route')
 
     from .user import user as user_blueprint
     app.register_blueprint(user_blueprint, url_prefix='/user')
