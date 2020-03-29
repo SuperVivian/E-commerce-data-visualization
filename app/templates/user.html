@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <title>电商大屏</title>
     <link rel="stylesheet" href="{{url_for('static',filename='css/user.css')}}" />
-
 </head>
 
 <body>
@@ -34,11 +33,11 @@
                                 <tr>
                                     <th><img src="../static/img/user/male.png" /></th>
                                     <td>
-                                        <p><span>34%</span></p>
+                                        <p><span id="male">0</span></p>
                                     </td>
                                     <th><img src="../static/img/user/female.png" /></th>
                                     <td>
-                                        <p><span>66%</span></p>
+                                        <p><span id="female">0</span></p>
                                     </td>
                                 </tr>
                             </table>
@@ -113,36 +112,73 @@
             <div class="col col-r">
                 <div class="xpanel xpanel-c-b">
                     <div class="title title-long">用户画像</div>
-                    <div class="xpanel-wrapper xpanel-wrapper-30">
-                        <div class="persona-info">
-                            <img src="../static/img/user/user1.png" />
-                            <p>品质生活者</p>
+                    <div class="personas-group">
+                        <div class="xpanel-wrapper xpanel-wrapper-30">
+                            <div class="persona-info">
+                                <img src="../static/img/user/user1.png" />
+                                <p>品质生活型</p>
+                            </div>
+                            <div class="chart-div" id="usrChart1">
+                                <div class="chart-loader">
+                                    <div class="loader"></div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="chart-div" id="usrChart1">
-                            <div class="chart-loader">
-                                <div class="loader"></div>
+                        <div class="xpanel-wrapper xpanel-wrapper-30">
+                            <div class="persona-info">
+                                <img src="../static/img/user/user2.png" />
+                                <p>品牌导向型</p>
+                            </div>
+                            <div class="chart-div" id="usrChart2">
+                                <div class="chart-loader">
+                                    <div class="loader"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="xpanel-wrapper xpanel-wrapper-30">
+                            <div class="persona-info">
+                                <img src="../static/img/user/user3.png" />
+                                <p>犹豫不决型</p>
+                            </div>
+                            <div class="chart-div" id="usrChart3">
+                                <div class="chart-loader">
+                                    <div class="loader"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="xpanel-wrapper xpanel-wrapper-30">
-                        <div class="persona-info">
-                            <img src="../static/img/user/user2.png" />
-                            <p>月光剁手族</p>
-                        </div>
-                        <div class="chart-div" id="usrChart2">
-                            <div class="chart-loader">
-                                <div class="loader"></div>
+                    <div class="personas-group">
+                        <div class="xpanel-wrapper xpanel-wrapper-30">
+                            <div class="persona-info">
+                                <img src="../static/img/user/user4.png" />
+                                <p>奢侈享受型</p>
+                            </div>
+                            <div class="chart-div" id="usrChart4">
+                                <div class="chart-loader">
+                                    <div class="loader"></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="xpanel-wrapper xpanel-wrapper-30">
-                        <div class="persona-info">
-                            <img src="../static/img/user/user3.png" />
-                            <p>精明实用者</p>
+                        <div class="xpanel-wrapper xpanel-wrapper-30">
+                            <div class="persona-info">
+                                <img src="../static/img/user/user5.png" />
+                                <p>理性消费型</p>
+                            </div>
+                            <div class="chart-div" id="usrChart5">
+                                <div class="chart-loader">
+                                    <div class="loader"></div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="chart-div" id="usrChart3">
-                            <div class="chart-loader">
-                                <div class="loader"></div>
+                        <div class="xpanel-wrapper xpanel-wrapper-30">
+                            <div class="persona-info">
+                                <img src="../static/img/user/user6.png" />
+                                <p>知足常乐型</p>
+                            </div>
+                            <div class="chart-div" id="usrChart6">
+                                <div class="chart-loader">
+                                    <div class="loader"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -158,6 +194,8 @@
     <script src="{{ url_for('static', filename='js/user/usrinfo.js') }}"></script>
     <script src="{{ url_for('static', filename='js/user/personas.js') }}"></script>
     <script type="text/javascript">
+    var user_day = null;
+    var i = 0; //计数器
     $(function() {
         //获取当天日期
         (function() {
@@ -174,8 +212,12 @@
             dataType: "json"
         }).done(function(data) {
             //console.log('Data: ', data);
-            rollNum("totalUser", 0, data.total_user);
-            rollNum("activeUser", 0, data.active_user)
+            user_day = data.user_day;
+            rollNum("totalUser", 0, user_day[0].total_user);
+            rollNum("activeUser", 0, user_day[0].active_user);
+            $("#male").text(data.user_sex.male + "%");
+            $("#female").text(data.user_sex.female + "%");
+            change();
         }).fail(function(jqXHR, textStatus) {
             console.log("Ajax Error: ", textStatus);
         });
@@ -186,12 +228,14 @@
             tooltip: {
                 formatter: function(params) {
                     const data = params.data;
-                    return data.name + "<br />用户数：" + data.value;
+                    if (data != null) {
+                        return data.name + "<br />用户数：" + (data.value * 100).toFixed(2) + "%";
+                    }
                 }
             },
             visualMap: {
                 type: "piecewise",
-                splitNumber: 6,
+                splitNumber: 5,
                 itemWidth: 10,
                 itemHeight: 10,
                 itemGap: 5,
@@ -201,7 +245,7 @@
                     color: "#b0c2f9"
                 },
                 min: 0,
-                max: 600,
+                max: 0.1,
                 calculable: true,
                 seriesIndex: [0]
             },
@@ -237,8 +281,8 @@
             const chartData = [];
             for (let i in data) {
                 chartData.push({
-                    name: data[i].region,
-                    value: data[i].count
+                    name: data[i].name,
+                    value: data[i].value
                 });
             }
             mapChart.setOption({
@@ -252,8 +296,6 @@
         });
 
     });
-
-
 
 
     //数字变化特效
@@ -271,6 +313,21 @@
             console.error(countUp.error);
         }
     }
+
+    function change() {
+        if (i >= user_day.length) { i = 0; }
+        $("#totalUser").text(user_day[i].total_user);
+        $("#activeUser").text(user_day[i++].active_user);
+        setTimeout("change()", 3000);
+    }
+    //3个div的统一class = 'div'
+    var index = 0;
+    //3秒轮播一次
+    var timer = setInterval(function() {
+        index = (index == 1) ? 0 : 1;
+        //某个div显示，其他的隐藏
+        $(".personas-group").hide().eq(index).fadeIn(1000);
+    }, 8000);
     </script>
 </body>
 

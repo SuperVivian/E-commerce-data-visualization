@@ -1,0 +1,31 @@
+[
+{
+    "name": "1",
+    "label": "<2k",
+    "value": 0.3275
+},
+{
+    "name": "2",
+    "label": "2k-4k",
+    "value": 0.4856
+},
+{
+    "name": "3",
+    "label": "4k-5k",
+    "value": 0.0791
+},
+{
+    "name": "4",
+    "label": "5k-10k",
+    "value": 0.0909
+},
+{
+    "name": "5",
+    "label": "10k-20k",
+    "value": 0.0164
+},
+{
+    "name": "6",
+    "label": ">20k",
+    "value": 0.0004
+}]

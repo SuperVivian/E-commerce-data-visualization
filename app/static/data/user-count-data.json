@@ -1,0 +1,52 @@
+{
+    "user_sex":
+    {
+        "male": 19,
+        "female": 81
+    },
+    "user_day": [
+    {
+        "total_user": 2575726,
+        "active_user": 41039
+    },
+    {
+        "total_user": 2632944,
+        "active_user": 62002
+    },
+    {
+        "total_user": 2670544,
+        "active_user": 42175
+    },
+    {
+        "total_user": 3116558,
+        "active_user": 42431
+    },
+    {
+        "total_user": 2917011,
+        "active_user": 43798
+    },
+    {
+        "total_user": 4165275,
+        "active_user": 52108
+    },
+    {
+        "total_user": 5499514,
+        "active_user": 39291
+    },
+    {
+        "total_user": 3868152,
+        "active_user": 59456
+    },
+    {
+        "total_user": 4914913,
+        "active_user": 46400
+    },
+    {
+        "total_user": 2410197,
+        "active_user": 52910
+    } ,
+    {
+        "total_user": 2330324,
+        "active_user": 36796
+    }  ]
+}

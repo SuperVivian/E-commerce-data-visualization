@@ -3,13 +3,19 @@ $(function() {
     var colorArr = [
         ['#4A99FF', '#4BFFFC'],
         ['#FF8C8C', '#FFD4AB'],
+        ['#FFFF00', '#F0E68C'],
+        ['#DC143C', '#FFF0F5']
+        ['#FF8C00', '#FFEBCD'],
         ['#a3e043', '#3D8C27']
     ];
 
     var value = [
-        [4, 4, 3, 2, 4],
-        [2, 2, 2, 5, 2],
-        [3, 3, 4, 3, 2]
+        [4, 5, 5, 5, 4],
+        [3, 3, 3, 4, 3],
+        [4, 4, 4, 5, 3],
+        [5, 4, 5, 5, 5],
+        [3, 3, 3, 3, 2],
+        [2, 2, 2, 2, 1]
     ];
     var indicator = [
 
@@ -18,25 +24,25 @@ $(function() {
             max: 5
         },
         {
-            text: '阶级',
-            max: 5
-        },
-        {
-            text: '教育',
+            text: '活跃度',
             max: 5
         },
         {
             text: '购买量',
             max: 5
+        },
+        {
+            text: '加购量',
+            max: 5
             //  axisLabel: {show: true, textStyle: {fontSize: 18, color: '#333'}}
         },
         {
-            text: '购买单价',
+            text: '购买均价',
             max: 5
         }
     ];
 
-    for (var i = 0; i < 3; i++) {
+    for (var i = 0; i < 6; i++) {
 
         //用户画像
         const usrChart = echarts.init(document.getElementById("usrChart" + (i + 1)), "shine");

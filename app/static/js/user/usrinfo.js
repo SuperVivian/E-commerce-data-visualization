@@ -6,6 +6,13 @@ $(function() {
             trigger: 'axis',
             axisPointer: {
                 type: 'shadow'
+            },
+            formatter: function(parms) {
+                var marker = '<span style="display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:#2948FF;"></span>';
+                var str = marker + "" + parms[0].data.name + "</br>" +
+                "占比：" + (parms[0].data.value*100).toFixed(2) + "%";
+                return str;
+
             }
         },
         grid: {
@@ -31,8 +38,8 @@ $(function() {
         }],
         yAxis: [{
             axisLabel: {
-                formatter: '{value}',
-                color: '#e2e9ff',
+                formatter:'{value}',
+                color: '#e2e9ff',    
             },
             axisLine: {
                 show: false
@@ -46,6 +53,7 @@ $(function() {
         series: [{
             type: 'bar',
             barWidth: '12px',
+            data:[],
             itemStyle: {
                 normal: {
                     color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
@@ -70,27 +78,10 @@ $(function() {
                     borderRadius: 200,
                     position: ['-8', '-20'],
                     distance: 1,
-                    formatter: [
-                        '    {d|●}',
-                        ' {a|{c}}     \n',
-                        '    {b|}'
-                    ].join(','),
-                    rich: {
-                        d: {
-                            color: '#3CDDCF',
-                        },
-                        a: {
-                            color: '#fff',
-                            align: 'center',
-                        },
-                        b: {
-                            width: 1,
-                            height: 0, //不显示线
-                            borderWidth: 1,
-                            borderColor: '#234e6c',
-                            align: 'left'
-                        },
-                    }
+                    color:"#fff",
+                    align: 'center',
+                    formatter: function(parms) {
+                        return (parms.data.value*100).toFixed(2) + "%";}
                 }
             }
         }]
@@ -106,8 +97,8 @@ $(function() {
         const name = [];
         const value=[];
         for (let i in data) {
-            name.push(data[i].age);
-            value.push(data[i].num);
+            name.push(data[i].name);
+            value.push(data[i].value);
         }
         ageChart.setOption({
             xAxis:[{
@@ -115,8 +106,7 @@ $(function() {
                 }]
             ,
             series: [{
-                name: "年龄分布",
-                data: value
+                data:data
             }]
         });
     }).fail(function(jqXHR) {
@@ -140,7 +130,11 @@ $(function() {
         },
         tooltip: {
             trigger: 'item',
-            formatter: "{b}"
+            formatter: function(parms) {
+                var str = parms.marker + "" + parms.data.name + "</br>" +
+                    "占比：" + (parms.data.value*100).toFixed(2) + "%";
+                return str;
+            }
         },
 
         series: [{
@@ -158,7 +152,9 @@ $(function() {
                         formatter: "{b}"
                     },
                     borderWidth: 0.2,
-                    borderColor: 'rgb(128,128,128,0)'
+                    borderColor: 'rgb(128,128,128,0)',
+                    shadowBlur: 3,
+                    shadowColor: 'rgba(142, 152, 241, 0.6)',
 
                 },
                 emphasis: {
@@ -196,68 +192,6 @@ $(function() {
 
     //教育
     const eduChart = echarts.init(document.getElementById("eduChart"), "shine");
-    var m2R2Data = [{
-            value: 335,
-            legendname: '项目07',
-            name: '01',
-            itemStyle: {
-                color: "#283c86",
-                shadowBlur: 5,
-                shadowColor: 'rgba(142, 152, 241, 0.6)',
-            }
-        },
-        {
-            value: 335,
-            legendname: '项目01',
-            name: '02',
-            itemStyle: {
-                color: "#005daf",
-                shadowBlur: 5,
-                shadowColor: 'rgba(142, 152, 241, 0.6)'
-            }
-        },
-        {
-            value: 310,
-            legendname: '项目02',
-            name: '03',
-            itemStyle: {
-                color: "#1E92DF",
-                shadowBlur: 5,
-                shadowColor: 'rgba(142, 152, 241, 0.6)'
-            }
-        },
-        {
-            value: 234,
-            legendname: '项目03',
-            name: '04',
-            itemStyle: {
-                color: "#1CB5E0",
-                shadowBlur: 5,
-                shadowColor: 'rgba(142, 152, 241, 0.6)'
-            }
-        },
-        {
-            value: 154,
-            legendname: '项目04',
-            name: '05',
-            itemStyle: {
-                color: "#00ecfa",
-                shadowBlur: 5,
-                shadowColor: 'rgba(142, 152, 241, 0.6)'
-            }
-        },
-        {
-            value: 335,
-            legendname: '项目06',
-            name: '06',
-            itemStyle: {
-                color: "#77F2FF",
-                shadowBlur: 5,
-                shadowColor: 'rgba(142, 152, 241, 0.6)'
-            }
-        }
-    ];
-
     eduoption = {
         title: [{
             text: '教育',
@@ -276,9 +210,8 @@ $(function() {
         tooltip: {
             trigger: 'item',
             formatter: function(parms) {
-                var str = parms.seriesName + "</br>" +
-                    parms.marker + "" + parms.data.legendname + "</br>" +
-                    "数量：" + parms.data.value + "</br>" +
+                var str = parms.marker + "" + parms.data.name + "</br>" +
+                parms.data.label+"</br>"+
                     "占比：" + parms.percent + "%";
                 return str;
             }
@@ -286,14 +219,15 @@ $(function() {
         legend: {
             orient: 'vertical',
             left: '70%',
-            align: 'left',
+            // align: 'left',
+            align: 'middle',
             top: 'middle',
             textStyle: {
                 color: '#8C8C8C'
             },
-            height: 200,
-            itemWidth: 15,
-            itemHeight: 15
+            height: 150,
+            itemWidth: 10,
+            itemHeight: 10
         },
         series: [{
             name: '标题',
@@ -307,7 +241,7 @@ $(function() {
                     show: false,
                     position: 'outter',
                     formatter: function(parms) {
-                        return parms.data.legendname
+                        return parms.data.name
                     }
                 }
             },
@@ -319,77 +253,42 @@ $(function() {
                     smooth: false,
                 }
             },
-            data: m2R2Data
-        }]
+             itemStyle: {
+                shadowBlur: 5,
+                shadowColor: 'rgba(142, 152, 241, 0.6)'
+            },
+            data: []
+        }],
+        color: ["#283c86","#005daf", "#1E92DF","#1CB5E0","#00ecfa", "#0CDDB1", "#77F2FF","#82ffc2"]
     };
     eduChart.setOption(eduoption);
+    $.ajax({
+        url: "/static/data/user-education.json",
+        dataType: "json"
+    }).done(function() {
+        $("#eduChart").addClass("chart-done");
+    }).done(function(data) {
+       // console.log('Data: ', data);
+        const name = [];
+        const value=[];
+        for (let i in data) {
+            name.push(data[i].name);
+            value.push(data[i].num);
+        }
+        eduChart.setOption({
+            series: [{
+                data: data
+            }]
+        });
+    }).fail(function(jqXHR) {
+        console.log("Ajax Fail: ", jqXHR.status, jqXHR.statusText);
+    });
+
 
 
 
     //收入
     const incChart = echarts.init(document.getElementById("incChart"), "shine");
-    var incData = [{
-            value: 335,
-            legendname: '项目07',
-            name: '01',
-            itemStyle: {
-                color: "#283c86",
-                shadowBlur: 5,
-                shadowColor: 'rgba(142, 152, 241, 0.6)',
-            }
-        },
-        {
-            value: 335,
-            legendname: '项目01',
-            name: '02',
-            itemStyle: {
-                color: "#005daf",
-                shadowBlur: 5,
-                shadowColor: 'rgba(142, 152, 241, 0.6)'
-            }
-        },
-        {
-            value: 310,
-            legendname: '项目02',
-            name: '03',
-            itemStyle: {
-                color: "#1E92DF",
-                shadowBlur: 5,
-                shadowColor: 'rgba(142, 152, 241, 0.6)'
-            }
-        },
-        {
-            value: 234,
-            legendname: '项目03',
-            name: '04',
-            itemStyle: {
-                color: "#1CB5E0",
-                shadowBlur: 5,
-                shadowColor: 'rgba(142, 152, 241, 0.6)'
-            }
-        },
-        {
-            value: 154,
-            legendname: '项目04',
-            name: '05',
-            itemStyle: {
-                color: "#00ecfa",
-                shadowBlur: 5,
-                shadowColor: 'rgba(142, 152, 241, 0.6)'
-            }
-        },
-        {
-            value: 335,
-            legendname: '项目06',
-            name: '06',
-            itemStyle: {
-                color: "#77F2FF",
-                shadowBlur: 5,
-                shadowColor: 'rgba(142, 152, 241, 0.6)'
-            }
-        }
-    ];
-
     incoption = {
         title: [{
             text: '收入',
@@ -408,9 +307,8 @@ $(function() {
         tooltip: {
             trigger: 'item',
             formatter: function(parms) {
-                var str = parms.seriesName + "</br>" +
-                    parms.marker + "" + parms.data.legendname + "</br>" +
-                    "数量：" + parms.data.value + "</br>" +
+                var str = parms.marker + "" + parms.data.name + "</br>" +
+                 parms.data.label+"</br>"+
                     "占比：" + parms.percent + "%";
                 return str;
             }
@@ -428,7 +326,6 @@ $(function() {
             itemHeight: 15
         },
         series: [{
-            name: '标题',
             type: 'pie',
             center: ['35%', '50%'],
             radius: ['50%', '65%'],
@@ -439,7 +336,7 @@ $(function() {
                     show: false,
                     position: 'outter',
                     formatter: function(parms) {
-                        return parms.data.legendname
+                        return parms.data.name
                     }
                 }
             },
@@ -451,8 +348,35 @@ $(function() {
                     smooth: false,
                 }
             },
-            data: incData
-        }]
+             itemStyle: {
+                shadowBlur: 5,
+                shadowColor: 'rgba(142, 152, 241, 0.6)'
+            },
+            data: []
+        }],
+        color: ["#283c86","#005daf", "#1E92DF","#1CB5E0","#00ecfa", "#0CDDB1", "#77F2FF","#82ffc2"]
     };
     incChart.setOption(incoption);
+    $.ajax({
+        url: "/static/data/user-income.json",
+        dataType: "json"
+    }).done(function() {
+        $("#incChart").addClass("chart-done");
+    }).done(function(data) {
+       // console.log('Data: ', data);
+        const name = [];
+        const value=[];
+        for (let i in data) {
+            name.push(data[i].name);
+            value.push(data[i].num);
+        }
+        incChart.setOption({
+            series: [{
+                data: data
+            }]
+        });
+    }).fail(function(jqXHR) {
+        console.log("Ajax Fail: ", jqXHR.status, jqXHR.statusText);
+    });
+
 });

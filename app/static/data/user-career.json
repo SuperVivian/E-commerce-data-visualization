@@ -1,41 +1,41 @@
 [
 {
-    "name": "教师\n",
-    "value": 100
+    "name": "私企员工\n",
+    "value": 0.3768
 },
 {
-    "name": "医生\n",
-    "value": 90
-},
-{
-    "name": "编辑\n",
-    "value": 85
+    "name": "学生\n",
+    "value": 0.3064
 },
 {
     "name": "公务员\n",
-    "value": 80
+    "value": 0.0900
 },
 {
-    "name": "厨师\n",
-    "value": 73
+    "name": "自由职业\n",
+    "value": 0.0758
 },
 {
-    "name": "运动员\n",
-    "value": 66
+    "name": "国营员工\n",
+    "value": 0.0618
 },
 {
-    "name": "军人\n",
-    "value": 62
+    "name": "技术人员\n",
+    "value": 0.0393
 },
 {
-    "name": "翻译\n",
-    "value": 53
+    "name": "外资员工\n",
+    "value": 0.0298
 },
 {
-    "name": "护士\n",
-    "value": 46
+    "name": "个体户\n",
+    "value": 0.0099
 },
 {
-    "name": "画家\n",
-    "value": 42
+    "name": "无工作\n",
+    "value": 0.0062
+},
+{
+    "name": "其他\n",
+    "value": 0.0040
 }]
