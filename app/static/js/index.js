@@ -420,6 +420,10 @@
                     lcOpt.yAxis[0].max=600000;
                     lcOpt.yAxis[0].interval=300000;
                     lcGraph.setOption(lcOpt);
+                }else if(obj.selected['点击'] === false && obj.selected['加入购物车']===false){
+                    lcOpt.yAxis[0].max=400000;
+                    lcOpt.yAxis[0].interval=200000;
+                    lcGraph.setOption(lcOpt);
                 }else if(obj.selected['点击'] === true){
                     lcOpt.yAxis[0].max=4400000;
                     lcOpt.yAxis[0].interval=2200000;
