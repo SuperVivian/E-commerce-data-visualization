@@ -147,7 +147,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="personas-group">
+                    <div class="personas-group hide">
                         <div class="xpanel-wrapper xpanel-wrapper-30">
                             <div class="persona-info">
                                 <img src="../static/img/user/user4.png" />
@@ -326,7 +326,7 @@
     var timer = setInterval(function() {
         index = (index == 1) ? 0 : 1;
         //某个div显示，其他的隐藏
-        $(".personas-group").hide().eq(index).fadeIn(1000);
+        $(".personas-group").hide().eq(index).fadeTo(1000,1);
     }, 8000);
     </script>
 </body>
