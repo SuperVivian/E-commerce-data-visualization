@@ -2,18 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6a590a62-9049-4470-8b91-0f5585a648b7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/route/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/route/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/static/data/item/age_like_item.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/static/data/item/behavior_ratio.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/static/data/item/recommend.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/static/js/item/recommend.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/css/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/css/item.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/css/item.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/css/user.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/css/user.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/js/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/js/item/map1.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/js/item/map1.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/js/item/map2.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/js/item/map2.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/templates/item.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/item.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/user.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/user.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_system/data_process/data/behavior.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data_system/data_process/data/behavior.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_system/data_process/data/user.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data_system/data_process/data/user.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_system/data_process/data/user2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_system/data_process/data/各类操作比例.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data_system/data_process/data/各类操作比例.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -51,6 +51,9 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\SofewareProject\E-commerce-data-visualization\app\static\data\item" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\SofewareProject\E-commerce-data-visualization\app\static\data" />
     </key>
