@@ -280,3 +280,7 @@ body {margin:0 auto;min-width:375px;max-width:1920px;}
 #gender .data-t p span{
 	font-size: 20px; color: #fff;
 }
+
+.hide{
+	opacity: 0;
+}
