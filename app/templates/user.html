@@ -208,7 +208,7 @@
 
         //获取统计数据
         $.ajax({
-            url: "../static/data/count-data.json",
+            url: "../static/data/user-count-data.json",
             dataType: "json"
         }).done(function(data) {
             //console.log('Data: ', data);
@@ -272,7 +272,7 @@
         };
         mapChart.setOption(mapChartOpt);
         $.ajax({
-            url: "../static/data/region-count.json",
+            url: "../static/data/user-region-count.json",
             dataType: "json"
         }).done(function() {
             $("#mapChart").addClass("chart-done");
