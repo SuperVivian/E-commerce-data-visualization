@@ -65,7 +65,7 @@ a{
 .flex-cell {-webkit-flex:1;-ms-flex:1;flex:1;padding:5px;}
 .flex-cell-l, .flex-cell-r {-webkit-flex:3;-ms-flex:3;flex:3;}
 .flex-cell-c {-webkit-flex:3;-ms-flex:3;flex:3;}
-.flex-cell-lc {-webkit-flex:5;-ms-flex:5;flex:5;}
+.flex-cell-lc {-webkit-flex:3.3;-ms-flex:3.3;flex:3.3;}
 
 .chart-wrapper {position:relative;height:100%;}
 .chart-title {
@@ -195,8 +195,8 @@ th,td{
 	border: 1.8px solid #0D294C;
 	text-align: center;
 	color: #fff;
-	font-size: 14px;
-	padding: 8px 41px;
+	font-size: 16px;
+	padding: 10px 41px;
 }
 .textSpan{
 	text-align: center;

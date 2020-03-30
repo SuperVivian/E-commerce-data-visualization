@@ -1,0 +1,44 @@
+{
+    "品质生活型": {
+        "predict_income": 4,
+        "active_degree": 5,
+        "buy_count": 5,
+        "buy_extra_count": 5,
+        "price_mean": 4
+    },
+    "品牌导向型": {
+        "predict_income": 3,
+        "active_degree": 3,
+        "buy_count": 3,
+        "buy_extra_count": 4,
+        "price_mean": 3
+    },
+    "犹豫不决型": {
+        "predict_income": 4,
+        "active_degree": 4,
+        "buy_count": 4,
+        "buy_extra_count": 5,
+        "price_mean": 3
+    },
+    "奢侈享受型": {
+        "predict_income": 5,
+        "active_degree": 4,
+        "buy_count": 5,
+        "buy_extra_count": 5,
+        "price_mean": 5
+    },
+    "理性消费型": {
+        "predict_income": 3,
+        "active_degree": 3,
+        "buy_count": 3,
+        "buy_extra_count": 3,
+        "price_mean": 2
+    },
+    "知足常乐型": {
+        "predict_income": 2,
+        "active_degree": 2,
+        "buy_count": 2,
+        "buy_extra_count": 2,
+        "price_mean": 1
+    }
+}

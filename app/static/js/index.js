@@ -16,6 +16,28 @@
 
 
         /*      右上        */
+
+        let predict_incomeNum = [];
+        let buy_countNum = [];
+        let active_degreeNum = [];
+        let buy_extra_countNum = [];
+        let price_meanNum = [];
+
+        $.ajax({
+            url: "../static/data/userSort.json",
+            dataType: "json"
+        }).done(function(data) {
+            data = eval(data);
+            for(let i in data){
+                predict_incomeNum.push(Number((data[i].predict_income)));
+                buy_countNum.push(Number((data[i].buy_count)));
+                buy_extra_countNum.push(Number((data[i].buy_extra_count)));
+                active_degreeNum.push(Number((data[i].active_degree)));
+                price_meanNum.push(Number((data[i].price_mean)));
+            }
+
+
+
         const rGraph = echarts.init(document.getElementById("rGraph"));
         const rOpt = {
             title: {
@@ -24,20 +46,30 @@
                     color: '#fff',
                     fontSize: 12
                 },
-                top:'bottom'
+                top:'bottom',
 
             },
             tooltip: {
 
             },
-            legend: {
-                data: ['品质生活者', '月光剁手族', '精明实用者'],
-                textStyle: {
+            legend: [
+                {
+                  x:'center',
+                  y:'85%',
+                  data:['品质生活型', '品牌导向型', '犹豫不决型'],
+                  textStyle: {
                     color: '#fff'
+                    },
                 },
-                top:'bottom',
-
-            },
+                {
+                  x:'center',
+                  y:'93%',
+                  data:['奢侈享受型','理性消费型','知足常乐型'],
+                  textStyle: {
+                    color: '#fff'
+                    },
+                }
+            ],
             radar: {
                 shape: 'circle',
                 splitNumber: 4,
@@ -55,12 +87,14 @@
                         },
                 },
                 indicator: [
-                    { name: '收入', max: 6500 },
-                    { name: '阶级', max: 16000 },
-                    { name: '购买量', max: 30000 },
-                    { name: '购买单价', max: 38000 },
-                    { name: '教育水平', max: 52000 }
+                    { name: '收入', max: 5 },
+                    { name: '活跃度', max: 5 },
+                    { name: '购买量', max: 5 },
+                    { name: '加购量', max: 5 },
+                    { name: '购买均价', max: 5 },
+
                 ],
+                radius:92,//调整雷达图面积
                 splitArea : {
                 show : false,
                 areaStyle : {
@@ -92,8 +126,8 @@
 
                 },
                 data: [{
-                        value: [4300, 10000, 28000, 35000, 50000, 19000],
-                        name: '品质生活者',
+                        value:[predict_incomeNum[0],active_degreeNum[0],buy_countNum[0],buy_extra_countNum[0],price_meanNum[0]],
+                        name: '品质生活型',
                         itemStyle: {
                             normal:{
                                 color: '#14A7FF',
@@ -104,8 +138,8 @@
                         },
                     },
                     {
-                        value: [5000, 14000, 28000, 31000, 42000, 21000],
-                        name: '月光剁手族',
+                        value:[predict_incomeNum[1],active_degreeNum[1],buy_countNum[1],buy_extra_countNum[1],price_meanNum[1]],
+                        name: '品牌导向型',
                         itemStyle: {
                             normal:{
                                 color: '#826EFB',
@@ -117,14 +151,53 @@
                         },
                     },
                     {
-                        value: [5000, 12000, 24000, 26000, 30000, 25000],
-                        name: '精明实用者',
+                        value:[predict_incomeNum[2],active_degreeNum[2],buy_countNum[2],buy_extra_countNum[2],price_meanNum[2]],
+                        name: '犹豫不决型',
                         itemStyle: {
                             normal:{
                                 color: '#F269F8',
                                 lineStyle: {
                                     width: 1,
                                     color: '#F269F8',
+                                },
+                            },
+                        },
+                    },
+                    {
+                        value:[predict_incomeNum[3],active_degreeNum[3],buy_countNum[3],buy_extra_countNum[3],price_meanNum[3]],
+                        name: '奢侈享受型',
+                        itemStyle: {
+                            normal:{
+                                color: '#99D44D',
+                                lineStyle: {
+                                    width: 1,
+                                    color: '#99D44D',
+                                },
+                            },
+                        },
+                    },
+                    {
+                        value:[predict_incomeNum[4],active_degreeNum[4],buy_countNum[4],buy_extra_countNum[4],price_meanNum[4]],
+                        name: '理性消费型',
+                        itemStyle: {
+                            normal:{
+                                color: '#DDBC00',
+                                lineStyle: {
+                                    width: 1,
+                                    color: '#DDBC00',
+                                },
+                            },
+                        },
+                    },
+                    {
+                        value:[predict_incomeNum[5],active_degreeNum[5],buy_countNum[5],buy_extra_countNum[5],price_meanNum[5]],
+                        name: '知足常乐型',
+                        itemStyle: {
+                            normal:{
+                                color: '#F490B2',
+                                lineStyle: {
+                                    width: 1,
+                                    color: '#F490B2',
                                 },
                             },
                         },
@@ -136,10 +209,35 @@
         rGraph.setOption(rOpt);
 
 
+        }).fail(function(jqXHR, textStatus) {
+            console.log("Ajax Error: ", textStatus);
+        });
+
+
+
+
 
         /*        左下          */
-        const lcGraph = echarts.init(document.getElementById("lcGraph"));
-        const lcOpt = {
+        
+        let clkNum = [];
+        let collectNum = [];
+        let cartNum = [];
+        let buyNum = [];
+
+        $.ajax({
+            url: "../static/data/dailyOpreation.json",
+            dataType: "json"
+        }).done(function(data) {
+            data = eval(data);
+            for(let i in data){
+                clkNum.push(Number((data[i].clk)));
+                collectNum.push(Number((data[i].collect)));
+                cartNum.push(Number((data[i].cart)));
+                buyNum.push(Number((data[i].buy)));
+            }
+
+            const lcGraph = echarts.init(document.getElementById("lcGraph"));
+            const lcOpt = {
             title: {
                 // text: '                            用户每天行为变化',
                 textStyle: {
@@ -152,9 +250,11 @@
             tooltip: {
                 trigger: 'axis',
                 axisPointer: {
-                    type: 'cross',
+                    type: 'shadow',
+                    // type:'cross',
                     crossStyle: {
                         color: '#fff'
+
                     }
                 }
             },
@@ -192,8 +292,8 @@
                     type: 'value',
                     name: '数量',
                     min: 0,
-                    max: 1100000,
-                    interval: 400000,
+                    max: 4400000,
+                    interval: 2200000,
                     axisLabel: {
                         formatter: '{value} '
                     },
@@ -228,7 +328,8 @@
             series: [{
                     name: '点击',
                     type: 'bar',
-                    data: [636282, 646576, 656092, 738137, 697101, 891366, 1084594, 876661, 1037942, 644361, 629065],
+                    // data: [636282, 646576, 656092, 738137, 697101, 891366, 1084594, 876661, 1037942, 644361, 629065],
+                    data:clkNum,
                     itemStyle:{
                         emphasis:{
                             barBorderRadius: 7
@@ -248,7 +349,7 @@
                 {
                     name: '收藏',
                     type: 'bar',
-                    data: [22046, 21553, 21459, 24105, 21925, 28696, 29445, 25458, 27625, 20647, 20445],
+                    data: collectNum,
                     itemStyle:{
                         emphasis:{
                             barBorderRadius: 7
@@ -268,7 +369,7 @@
                 {
                     name: '加入购物车',
                     type: 'bar',
-                    data: [58829, 59921, 61734, 72209, 68420, 97355, 135711, 100733, 128266, 61264, 61720],
+                    data: cartNum,
                     itemStyle:{
                         emphasis:{
                             barBorderRadius: 7
@@ -289,7 +390,7 @@
                     name: '购买',
                     type: 'bar',
                     // yAxisIndex: 1,
-                    data: [15757, 16051, 16765, 12241, 10602, 9674, 79593, 32242, 61809, 17220, 19303],
+                    data: buyNum,
                     itemStyle:{
                         emphasis:{
                             barBorderRadius: 7
@@ -312,252 +413,108 @@
             }
         };
         lcGraph.setOption(lcOpt);
+        }).fail(function(jqXHR, textStatus) {
+            console.log("Ajax Error: ", textStatus);
+        });
+
+
 
 
 
         /*        右下        */
         const lrGraph = echarts.init(document.getElementById("lrGraph"));
 
-
-        let data = [
-            [
-                [0, 1, 160000000, '品质生活者', '电子'],
-                [0, 2, 20000000, '月光剁手族', '电子'],
-                [0, 3, 40000000, '精明实用者', '电子']
-            ],
-            [
-                [1, 1, 10000000, '品质生活者', '百货'],
-                [1, 2, 30000000, '月光剁手族', '百货'],
-                [1, 3, 160000000, '精明实用者', '百货']
-            ],
-            [
-                [2, 1, 60000000, '品质生活者', '美妆'],
-                [2, 2, 110000000, '月光剁手族', '美妆'],
-                [2, 3, 30000000, '精明实用者', '美妆']
-            ],
-            [
-                [3, 1, 50000000, '品质生活者', '衣服'],
-                [3, 2, 120000000, '月光剁手族', '衣服'],
-                [3, 3, 30000000, '精明实用者', '衣服']
-            ],
-            [
-                [4, 1, 20000000, '品质生活者', '食物'],
-                [4, 2, 110000000, '月光剁手族', '食物'],
-                [4, 3, 70000000, '精明实用者', '食物']
-            ]
-
-        ];
-
-        const lrOpt = {
-
-            title: {
-                text: '        商品分类',
-                textStyle: {
-                    color: '#fff',
-                    fontSize: 14,
-
-                },
-                top:'bottom'
+        var hours = ['1', '2', '3', '4', '5', '6',
+            '7', '8', '9','10','11',
+            '12','13', '14', '15', '16', '17', '18',
+            '19', '20', '21','22','23',
+            '24','25', '26', '27', '28', '29', '30',
+            '31', '32', '33','34','35',
+            '36','37', '38', '39', '40', '41', '42',
+            '43', '44', '45','46','47'];
+    var days = ['知足常乐型','理性消费型','奢侈享受型','犹豫不决型','品牌导向型','品质生活型'];
+    //地图配置项
+    const lrGraph_opt = {
+          tooltip: {
+                position: 'top'
             },
-            legend: {
-                right: 10,
-                data: ['电子', '百货', '美妆', '衣服', '食物'],
-                textStyle: {
-                    color: '#fff'
-                },
-                top:'bottom'
+            animation: false,
+            grid: {
+                height: '70%',
+                width:'88%',
+                top: '10%',
+                left:'12%'
             },
             xAxis: {
-                show: false,
-                splitLine: {
-
+                axisLine: {
                     lineStyle: {
-                        type: 'dashed'
-                    }
+                        color: '#fff',
+                        },
+                },
+                type: 'category',
+                data: hours,
+                splitArea: {
+                    show: true
                 }
             },
             yAxis: {
-                show: false,
-                splitLine: {
-                    show: false,
+                type: 'category',
+                data: days,
+                splitArea: {
+                    show: true
+                },
+                axisLine: {
                     lineStyle: {
-                        type: 'dashed'
-                    }
+                        color: '#fff',
+                        },
                 },
-                scale: true
             },
-            series: [{
-                    name: '电子',
-                    data: data[0],
-                    type: 'scatter',
-                    symbolSize: function(data) {
-                        return Math.sqrt(data[2]) / 5e2;
-                    },
-                    label: {
-                        emphasis: {
-                            show: true,
-                            formatter: function(param) {
-                                return param.data[3];
-                            },
-                            position: 'top'
-                        },
-                        textStyle:{
-                            color:'#fff',
-                        },
-                    },
-                    itemStyle: {
-                        normal: {
-                            shadowBlur: 10,
-                            shadowColor: 'rgba(120, 36, 50, 0.5)',
-                            shadowOffsetY: 5,
-                            color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
-                                offset: 0,
-                                color: 'rgb(251, 118, 123)'
-                            }, {
-                                offset: 1,
-                                color: 'rgb(204, 46, 72)'
-                            }])
-                        }
-                    }
-                }, {
-                    name: '百货',
-                    data: data[1],
-                    type: 'scatter',
-                    symbolSize: function(data) {
-                        return Math.sqrt(data[2]) / 5e2;
-                    },
-                    label: {
-                        emphasis: {
-                            show: true,
-                            formatter: function(param) {
-                                return param.data[3];
-                            },
-                            position: 'top',
-                            textStyle:{
-                            color:'#fff',
-                            },
-                        }
-                    },
-                    itemStyle: {
-                        normal: {
-                            shadowBlur: 10,
-                            shadowColor: 'rgba(25, 100, 150, 0.5)',
-                            shadowOffsetY: 5,
-                            color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
-                                offset: 0,
-                                color: 'rgb(129, 227, 238)'
-                            }, {
-                                offset: 1,
-                                color: 'rgb(25, 183, 207)'
-                            }])
-                        }
-                    }
+            visualMap: {
+                splitNumber: 3,
+                color: ['#d94e5d','#eac736','#50a3ba'],
+                min: 0,
+                max: 10,
+                calculable: false,
+                orient: 'horizontal',
+                left: 'center',
+                bottom: '0%',
+                textStyle:{
+                    color:'#fff'
+                }
+            },
+            series: [
+            {
+                name: 'Punch Card',
+                type: 'heatmap',
+                label: {
+                    show: true
                 },
-                {
-                    name: '美妆',
-                    data: data[2],
-                    type: 'scatter',
-                    symbolSize: function(data) {
-                        return Math.sqrt(data[2]) / 5e2;
-                    },
-                    label: {
-                        emphasis: {
-                            show: true,
-                            formatter: function(param) {
-                                return param.data[3];
-                            },
-                            position: 'top',
-                            textStyle:{
-                            color:'#fff',
-                            },
-                        }
-                    },
+                emphasis: {
                     itemStyle: {
-                        normal: {
-                            shadowBlur: 10,
-                            shadowColor: 'rgba(25, 100, 150, 0.5)',
-                            shadowOffsetY: 5,
-                            color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
-                                offset: 0,
-                                color: '#F269F8'
-                            }, {
-                                offset: 1,
-                                color: '#D55EE0'
-                            }])
-                        }
-                    }
-                },
-                {
-                    name: '衣服',
-                    data: data[3],
-                    type: 'scatter',
-                    symbolSize: function(data) {
-                        return Math.sqrt(data[2]) / 5e2;
-                    },
-                    label: {
-                        emphasis: {
-                            show: true,
-                            formatter: function(param) {
-                                return param.data[3];
-                            },
-                            position: 'top',
-                            textStyle:{
-                            color:'#fff',
-                            },
-                        }
-                    },
-                    itemStyle: {
-                        normal: {
-                            shadowBlur: 10,
-                            shadowColor: 'rgba(25, 100, 150, 0.5)',
-                            shadowOffsetY: 5,
-                            color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
-                                offset: 0,
-                                color: '#8773FF'
-                            }, {
-                                offset: 1,
-                                color: '#7867EA'
-                            }])
-                        }
-                    }
-                },
-                {
-                    name: '食物',
-                    data: data[4],
-                    type: 'scatter',
-                    symbolSize: function(data) {
-                        return Math.sqrt(data[2]) / 5e2;
-                    },
-                    label: {
-                        emphasis: {
-                            show: true,
-                            formatter: function(param) {
-                                return param.data[3];
-                            },
-                            position: 'top',
-                            textStyle:{
-                            color:'#fff',
-                            },
-                        }
-                    },
-                    itemStyle: {
-                        normal: {
-                            shadowBlur: 10,
-                            shadowColor: 'rgba(25, 100, 150, 0.5)',
-                            shadowOffsetY: 5,
-                            color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
-                                offset: 0,
-                                color: '#DDBC00'
-                            }, {
-                                offset: 1,
-                                color: '#FFDC3D'
-                            }])
-                        }
+                        shadowBlur: 10,
+                        shadowColor: 'rgba(0, 0, 0, 1)'
                     }
                 }
-            ]
-        };
-        lrGraph.setOption(lrOpt);
+            }]
+    };
+    //渲染报表
+    lrGraph.setOption(lrGraph_opt);
+    //加载json数据
+    $.ajax({
+        url: "/static/data/item/recommend.json",
+        dataType: "json"
+    })
+    .done(function (data) {
+        console.log('Data: ', data);
+        data = data.map(function (item) {
+            return [item[1], item[0], item[2] || '-'];
+        });
+        lrGraph.setOption({
+            series:[{data: data}],
+        });
+    }).fail(function (jqXHR) {
+        console.log("Ajax Fail: ", jqXHR.status, jqXHR.statusText);
+    });
 
 
         window.onresize = function() {
@@ -570,6 +527,38 @@
 
     });
 
+
+        $.ajax({
+            url: "../static/data/dailyOpreation.json",
+            dataType: "json"
+        }).done(function(data) {
+            for(let i in data){
+                let elem_li = document.createElement('li');
+                elem_li.innerHTML = data[i].clk;
+                document.getElementById('changeNumber1').appendChild(elem_li);
+            }
+        }).done(function(data) {
+            for(let i in data){
+                let elem_li = document.createElement('li');
+                elem_li.innerHTML = data[i].collect;
+                document.getElementById('changeNumber2').appendChild(elem_li);
+            }
+        }).done(function(data) {
+            for(let i in data){
+                let elem_li = document.createElement('li');
+                elem_li.innerHTML = data[i].cart;
+                document.getElementById('changeNumber3').appendChild(elem_li);
+            }
+        }).done(function(data) {
+            for(let i in data){
+                let elem_li = document.createElement('li');
+                elem_li.innerHTML = data[i].buy;
+                document.getElementById('changeNumber4').appendChild(elem_li);
+            }
+        }).fail(function(jqXHR, textStatus) {
+            console.log("Ajax Error: ", textStatus);
+        });
+
     function changeText() {
         let changeNumber1 = document.getElementById("changeNumber1");
         changeNumber1.appendChild(changeNumber1.firstChild);
@@ -581,6 +570,30 @@
         changeNumber4.appendChild(changeNumber4.firstChild);
         }
         setInterval("changeText()", 1000);
+
+
+    let conversionNum = [];
+    $.ajax({
+            url: "../static/data/commodityConversion.json",
+            dataType: "json"
+        }).done(function(data) {
+            for(let i in data){
+                let res = 0;
+                res = parseFloat((Number(data[i])*100).toFixed(2));
+                conversionNum.push(res);
+            }
+            document.getElementById('conversion1').innerHTML = conversionNum[0]+'%';
+            document.getElementById('conversion2').innerHTML = conversionNum[1]+'%';
+            document.getElementById('conversion3').innerHTML = conversionNum[2]+'%';
+            document.getElementById('conversion4').innerHTML = conversionNum[3]+'%';
+            document.getElementById('conversion5').innerHTML = conversionNum[4]+'%';
+        }).fail(function(jqXHR, textStatus) {
+            console.log("Ajax Error: ", textStatus);
+        });
+
+
+
+
 
 
 
