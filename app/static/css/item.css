@@ -66,7 +66,8 @@ a{
 .flex-cell {-webkit-flex:1;-ms-flex:1;flex:1;padding:5px;}
 .flex-cell-l, .flex-cell-r {-webkit-flex:4;-ms-flex:4;flex:4;}
 .flex-cell-c {-webkit-flex:7;-ms-flex:7;flex:7;}
-
+.flex-cell-l-2, .flex-cell-r-2 {-webkit-flex:5;-ms-flex:5;flex:5;}
+.flex-cell-c-2 {-webkit-flex:5;-ms-flex:5;flex:5;}
 
 .chart-wrapper {position:relative;height:100%;}
 .chart-title {

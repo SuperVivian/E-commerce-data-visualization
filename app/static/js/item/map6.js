@@ -1,59 +1,48 @@
 $(function () {
 
-	/******************* 饼图 ******************/
+	/******************* 玫瑰图 ******************/
 	//初始化echarts实例
-	var cityMap = echarts.init(document.getElementById("cityMap"));
-	var highIncomeOpt = {
+	var user_type_price = echarts.init(document.getElementById("user_type_price"));
+	var user1_opt = {
 		title: {
-			text: "高收入",
+			text: "",
 			left: 'center',
-			top: 20,
+			top: 0,
 			textStyle: {
 				color: '#fff'
 			}
 		},
-
 		tooltip: {
 			trigger: 'item',
 			formatter: "{a} <br/>{b} : {c} ({d}%)"
 		},
 
 		visualMap: {
-			show: false,
-			min: 80,
-			max: 600,
+			show: true,
+			type: 'continuous',
+			text: ['High', 'Low'],
+			textStyle: {
+				color: '#fff'
+			},
+			itemHeight: 300,
+			itemWidth: 15,
+			calculable: true,
+			inverse: true,
+			bottom: "5%",
+			orient: 'horizontal',
+			left: 'center',
+			min: 0,
+			max: 40000,
 			inRange: {
 				colorLightness: [0, 1]
 			}
 		},
 		series: [{
-			name:  "高收入",
+			name: "",
 			type: 'pie',
 			radius: '55%',
 			center: ['50%', '50%'],
-			data: [{
-					value: 335,
-					name: '0-0.5k'
-				},
-				{
-					value: 310,
-					name: '0.5k-1k'
-				},
-				{
-					value: 274,
-					name: '1k-5k'
-				},
-				{
-					value: 235,
-					name: '5k-8k'
-				},
-				{
-					value: 400,
-					name: '8k-1w'
-				}
-			].sort(function (a, b) {
-				return a.value - b.value;
-			}),
+			data: [],
 			roseType: 'radius',
 			label: {
 				normal: {
@@ -87,373 +76,204 @@ $(function () {
 			}
 		}]
 	};
-	var lowIncomeOpt = {
-		title: {
-			text: "低收入",
-			left: 'center',
-			top: 20,
-			textStyle: {
-				color: '#fff'
-			}
-		},
-
-		tooltip: {
-			trigger: 'item',
-			formatter: "{a} <br/>{b} : {c} ({d}%)"
-		},
-
-		visualMap: {
-			show: false,
-			min: 80,
-			max: 600,
-			inRange: {
-				colorLightness: [0, 1]
-			}
-		},
-		series: [{
-			name:  "低收入",
-			type: 'pie',
-			radius: '55%',
-			center: ['50%', '50%'],
-			data: [{
-					value: 335,
-					name: '0-0.5k'
+	user_type_price.setOption(user1_opt);
+	//加载json数据
+	$.ajax({
+			url: "/static/data/item/user_type_price.json",
+			dataType: "json"
+		})
+		.done(function (data) {
+			console.log('user_type_price : ', data);
+			user_type_price.setOption({
+				title: {
+					text: data.title_text[0]
 				},
-				{
-					value: 200,
-					name: '0.5k-1k'
+				visualMap: {
+					max: data.user_1.sort(function (a, b) {
+						return b.value - a.value;
+					})[0].value
 				},
-				{
-					value: 450,
-					name: '1k-5k'
-				},
-				{
-					value: 235,
-					name: '5k-8k'
-				},
-				{
-					value: 300,
-					name: '8k-1w'
-				}
-			].sort(function (a, b) {
-				return a.value - b.value;
-			}),
-			roseType: 'radius',
-			label: {
-				normal: {
-					textStyle: {
-						color: '#fff'
-					}
-				}
-			},
-			labelLine: {
-				normal: {
-					lineStyle: {
-						color: '#fff'
-					},
-					smooth: 0.2,
-					length: 10,
-					length2: 20
-				}
-			},
-			itemStyle: {
-				normal: {
-					color: '#2692DC',
-					shadowBlur: 200,
-					shadowColor: 'rgba(0, 0, 0, 0.5)'
-				}
-			},
-
-			animationType: 'scale',
-			animationEasing: 'elasticOut',
-			animationDelay: function (idx) {
-				return Math.random() * 200;
-			}
-		}]
-	};
-	var mediumIncomeOpt = {
-		title: {
-			text: "中收入",
-			left: 'center',
-			top: 20,
-			textStyle: {
-				color: '#fff'
-			}
-		},
-
-		tooltip: {
-			trigger: 'item',
-			formatter: "{a} <br/>{b} : {c} ({d}%)"
-		},
-
-		visualMap: {
-			show: false,
-			min: 80,
-			max: 600,
-			inRange: {
-				colorLightness: [0, 1]
-			}
-		},
-		series: [{
-			name: "中收入",
-			type: 'pie',
-			radius: '55%',
-			center: ['50%', '50%'],
-			data: [{
-					value: 460,
-					name: '0-0.5k'
-				},
-				{
-					value: 310,
-					name: '0.5k-1k'
-				},
-				{
-					value: 274,
-					name: '1k-5k'
-				},
-				{
-					value: 180,
-					name: '5k-8k'
-				},
-				{
-					value: 50,
-					name: '8k-1w'
-				}
-			].sort(function (a, b) {
-				return a.value - b.value;
-			}),
-			roseType: 'radius',
-			label: {
-				normal: {
-					textStyle: {
-						color: '#fff'
-					}
-				}
-			},
-			labelLine: {
-				normal: {
-					lineStyle: {
-						color: '#fff'
-					},
-					smooth: 0.2,
-					length: 10,
-					length2: 20
-				}
-			},
-			itemStyle: {
-				normal: {
-					color: '#2692DC',
-					shadowBlur: 200,
-					shadowColor: 'rgba(0, 0, 0, 0.5)'
-				}
-			},
-
-			animationType: 'scale',
-			animationEasing: 'elasticOut',
-			animationDelay: function (idx) {
-				return Math.random() * 200;
-			}
-		}]
-	};
-	cityMap.setOption(highIncomeOpt);
-
+				series: [{
+					name: data.title_text[0],
+					data: data.user_1.sort(function (a, b) {
+						return a.value - b.value;
+					}),
+				}],
+			});
+		}).fail(function (jqXHR) {
+			console.log("Ajax Fail: ", jqXHR.status, jqXHR.statusText);
+		});
 	$("#incomeSelector").change(function () {
-		console.log();
+		user_type_price.setOption(user1_opt);
 		switch ($(this).val()) {
-			case "highIncome":				
-				cityMap.setOption(highIncomeOpt);
+			case "user1":
+				$.ajax({
+						url: "/static/data/item/user_type_price.json",
+						dataType: "json"
+					})
+					.done(function (data) {
+						console.log('Data: ', data);
+						user_type_price.setOption({
+							title: {
+								text: data.title_text[0]
+							},
+							visualMap: {
+								max: data.user_1.sort(function (a, b) {
+									return b.value - a.value;
+								})[0].value
+							},
+							series: [{
+								name: data.title_text[0],
+								data: data.user_1.sort(function (a, b) {
+									return a.value - b.value;
+								}),
+							}],
+						});
+					}).fail(function (jqXHR) {
+						console.log("Ajax Fail: ", jqXHR.status, jqXHR.statusText);
+					});
 				break;
-			case "lowIncome":				
-				cityMap.setOption(lowIncomeOpt);
+			case "user2":
+				$.ajax({
+						url: "/static/data/item/user_type_price.json",
+						dataType: "json"
+					})
+					.done(function (data) {
+						console.log('Data: ', data);
+						user_type_price.setOption({
+							title: {
+								text: data.title_text[1]
+							},
+							visualMap: {
+								max: data.user_2.sort(function (a, b) {
+									return b.value - a.value;
+								})[0].value
+							},
+							series: [{
+								name: data.title_text[1],
+								data: data.user_2.sort(function (a, b) {
+									return a.value - b.value;
+								}),
+							}],
+						});
+					}).fail(function (jqXHR) {
+						console.log("Ajax Fail: ", jqXHR.status, jqXHR.statusText);
+					});
 				break;
-			case "mediunmIncome":				
-				cityMap.setOption(mediumIncomeOpt);
+			case "user3":
+				$.ajax({
+						url: "/static/data/item/user_type_price.json",
+						dataType: "json"
+					})
+					.done(function (data) {
+						console.log('Data: ', data);
+						user_type_price.setOption({
+							title: {
+								text: data.title_text[2]
+							},
+							visualMap: {
+								max: data.user_3.sort(function (a, b) {
+									return b.value - a.value;
+								})[0].value
+							},
+							series: [{
+								name: data.title_text[2],
+								data: data.user_3.sort(function (a, b) {
+									return a.value - b.value;
+								}),
+							}],
+						});
+					}).fail(function (jqXHR) {
+						console.log("Ajax Fail: ", jqXHR.status, jqXHR.statusText);
+					});
+				break;
+			case "user4":
+				$.ajax({
+						url: "/static/data/item/user_type_price.json",
+						dataType: "json"
+					})
+					.done(function (data) {
+						console.log('Data: ', data);
+						user_type_price.setOption({
+							title: {
+								text: data.title_text[3]
+							},
+							visualMap: {
+								max: data.user_4.sort(function (a, b) {
+									return b.value - a.value;
+								})[0].value
+							},
+							series: [{
+								name: data.title_text[3],
+								data: data.user_4.sort(function (a, b) {
+									return a.value - b.value;
+								}),
+							}],
+						});
+					}).fail(function (jqXHR) {
+						console.log("Ajax Fail: ", jqXHR.status, jqXHR.statusText);
+					});
+				break;
+			case "user5":
+				$.ajax({
+						url: "/static/data/item/user_type_price.json",
+						dataType: "json"
+					})
+					.done(function (data) {
+						console.log('Data: ', data);
+						user_type_price.setOption({
+							title: {
+								text: data.title_text[4]
+							},
+							visualMap: {
+								max: data.user_5.sort(function (a, b) {
+									return b.value - a.value;
+								})[0].value
+							},
+							series: [{
+								name: data.title_text[4],
+								data: data.user_5.sort(function (a, b) {
+									return a.value - b.value;
+								}),
+							}],
+						});
+					}).fail(function (jqXHR) {
+						console.log("Ajax Fail: ", jqXHR.status, jqXHR.statusText);
+					});
+				break;
+			case "user6":
+				$.ajax({
+						url: "/static/data/item/user_type_price.json",
+						dataType: "json"
+					})
+					.done(function (data) {
+						console.log('Data: ', data);
+						user_type_price.setOption({
+							title: {
+								text: data.title_text[5]
+							},
+							visualMap: {
+								max: data.user_6.sort(function (a, b) {
+									return b.value - a.value;
+								})[0].value
+							},
+							series: [{
+								name: data.title_text[5],
+								data: data.user_6.sort(function (a, b) {
+									return a.value - b.value;
+								}),
+							}],
+						});
+					}).fail(function (jqXHR) {
+						console.log("Ajax Fail: ", jqXHR.status, jqXHR.statusText);
+					});
 				break;
 		}
 	});
 
 	/********** 浏览器窗口改变时，重置报表大小 ****************/
 	window.onresize = function () {
-		cityMap.resize();
+		user_type_price.resize();
 	}
 
 });
-
-
-
-//三个环形
-
-// title: [{
-// 	top: '77%',
-// 	left: '43%',
-// 	text: '高收入',
-// 	textStyle: {
-// 		color: "#fff",
-// 		fontSize:"15"
-// 	}
-// },
-//  {
-// 	top: '70%',
-// 	left: '47%',
-// 	text: '中收入',
-// 	textStyle: {
-// 		color: "#fff"
-// 	}
-// }, {
-// 	top: '70%',
-// 	left: '22%',
-// 	text: '低收入',
-// 	textStyle: {
-// 		color: "#fff"
-// 	}
-// }
-// ],
-// legend: {
-// 	orient: 'horizontal',
-// 	x: 'right',
-// 	data: ['0-0.5k', '1k-5k', '0.5k-1k', '5k-8k', '8k-1w'],
-// 	textStyle: {
-// 		color: "#fff",
-// 		fontSize:"10"
-// 	}
-// },
-// series: [
-// {
-// 		name: '低收入',
-// 		type: 'pie',
-// 		radius: ["20", "30"],
-// 		avoidLabelOverlap: false,
-// 		center: ['15%', '50%'],
-// 		label: {
-// 			normal: {
-// 				show: false,
-// 				position: 'center'
-// 			},
-// 			emphasis: {
-// 				show: true,
-// 				textStyle: {
-// 					fontSize: '30',
-// 					fontWeight: 'bold'
-// 				}
-// 			}
-// 		},
-// 		labelLine: {
-// 			normal: {
-// 				show: false
-// 			}
-// 		},
-// 		data: [{
-// 				value: 335,
-// 				name: '0-0.5k'
-// 			},
-// 			{
-// 				value: 310,
-// 				name: '1k-5k'
-// 			},
-// 			{
-// 				value: 234,
-// 				name: '0.5k-1k'
-// 			},
-// 			{
-// 				value: 135,
-// 				name: '5k-8k'
-// 			},
-// 			{
-// 				value: 1548,
-// 				name: '8k-1w'
-// 			}
-// 		]
-// 	},
-// {
-// 	name: '中收入',
-// 	type: 'pie',
-// 	radius: ["20", "30"],
-// 	avoidLabelOverlap: false,
-// 	center: ['50%', '50%'],
-// 	label: {
-// 		normal: {
-// 			show: false,
-// 			position: 'center'
-// 		},
-// 		emphasis: {
-// 			show: true,
-// 			textStyle: {
-// 				fontSize: '30',
-// 				fontWeight: 'bold'
-// 			}
-// 		}
-// 	},
-// 	labelLine: {
-// 		normal: {
-// 			show: false
-// 		}
-// 	},
-// 	data: [{
-// 			value: 335,
-// 			name: '0-0.5k'
-// 		},
-// 		{
-// 			value: 310,
-// 			name: '1k-5k'
-// 		},
-// 		{
-// 			value: 234,
-// 			name: '0.5k-1k'
-// 		},
-// 		{
-// 			value: 135,
-// 			name: '5k-8k'
-// 		},
-// 		{
-// 			value: 1548,
-// 			name: '8k-1w'
-// 		}
-// 	]
-// },
-// 	{
-// 		name: '高收入',
-// 		type: 'pie',
-// 		radius: ["50", "70"],
-// 		avoidLabelOverlap: false,
-// 		center: ['50%', '50%'],
-// 		label: {
-// 			normal: {
-// 				show: false,
-// 				position: 'center'
-// 			},
-// 			emphasis: {
-// 				show: true,
-// 				textStyle: {
-// 					fontSize: '30',
-// 					fontWeight: 'bold'
-// 				}
-// 			}
-// 		},
-// 		labelLine: {
-// 			normal: {
-// 				show: false
-// 			}
-// 		},
-// 		data: [{
-// 				value: 335,
-// 				name: '0-0.5k'
-// 			},
-// 			{
-// 				value: 310,
-// 				name: '1k-5k'
-// 			},
-// 			{
-// 				value: 234,
-// 				name: '0.5k-1k'
-// 			},
-// 			{
-// 				value: 135,
-// 				name: '5k-8k'
-// 			},
-// 			{
-// 				value: 1548,
-// 				name: '8k-1w'
-// 			}
-// 		]
-// 	}
-// ]				

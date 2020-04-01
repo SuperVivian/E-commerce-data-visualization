@@ -284,3 +284,17 @@ body {margin:0 auto;min-width:375px;max-width:1920px;}
 .hide{
 	opacity: 0;
 }
+
+/* interactive items */
+.selector {
+	float: right;
+	margin-top: 0;
+}
+
+.page_a {
+    color:white;
+    text-decoration:underline;
+}
+.page_a:hover{
+    color:#73aae5;
+}

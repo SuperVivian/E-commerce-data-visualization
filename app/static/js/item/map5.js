@@ -1,28 +1,27 @@
 $(function () {
 	/******************* 柱状图 ******************/
 	//初始化echarts实例
-	var colors = ['#FFCDE7', '#DDBC00', '#5793f3', '#675bba', ];
-	const barMap = echarts.init(document.getElementById("barMap"));
-	const barMapOpt = {
+	var colors = ['#F490B2', '#DE7', '#4086F2', '#7867EA', ];
+	const item_top = echarts.init(document.getElementById("item_top"));
+	const item_top_opt = {
 		color: colors,
 		grid: {
-			right: '10%',
-			left: '10%'
-
+			right: '5%',
+			left: '10%',
+			bottom:'15%'
+		},
+		title: {
+			left: 'center',
+			top: 0,
+			textStyle: {
+				color: '#fff'
+			}
 		},
 		tooltip: {
 			trigger: 'axis',
 			axisPointer: { // 坐标轴指示器，坐标轴触发有效
 				type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
 			}
-		},
-		legend: {
-			data: ['购买量', '点击量', '购物车量', '收藏量'],
-			textStyle: {
-				color: '#fff'
-			},
-			y: '5%',
-			x: 'center',
 		},
 		xAxis: [{
 			type: 'category',
@@ -33,102 +32,213 @@ $(function () {
 				lineStyle: {
 					color: "#fff",
 				}
-			},
-			data: ['连衣裙', '衬衫', '高跟鞋', '口红', '暖宝宝', '剃须刀', '啤酒', '水杯', '书包', '大衣', ]
+			}
 		}],
 		yAxis: [{
-				type: 'value',
-				name: '点击量',
-				min: 0,
-				max: 200,
-				position: 'right',
-				offset: 0,
-				axisLine: {
-					lineStyle: {
-						color: colors[0]
-					}
-				},
-				splitLine: {
-					show: false
-				},
-				axisLabel: {
-					formatter: '{value}'
-				}
-
+			type: 'value',
+			position: 'left',
+			offset: 0,
+			splitLine: {
+				show: false
 			},
-			{
-				type: 'value',
-				name: '购买量',
-				min: 0,
-				max: 200,
-				position: 'left',
-				axisLine: {
-					lineStyle: {
-						color: colors[1]
-					}
+			axisLabel: {
+				formatter: '{value}'
+			}
+		}],
+		series: [
+		{
+			type: 'bar',
+			itemStyle: {
+				emphasis: {
+					barBorderRadius: 7
 				},
-				splitLine: {
-					show: false
-				},
-				axisLabel: {
-					formatter: '{value}'
+				normal: {
+					barBorderRadius: 7
 				}
 			}
-		],
-		series: [{
-				name: '点击量',
-				type: 'bar',
-				data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0],
-				itemStyle:{
-					emphasis:{
-						barBorderRadius:7,
-					},
-					normal:{
-						barBorderRadius: 7,
-					}
-				}
-			},
-			{
-				name: '购买量',
-				type: 'line',
-				yAxisIndex: 1,
-				data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8]
-			},
-			{
-				name: '购物车量',
-				type: 'bar',
-				yAxisIndex: 1,
-				data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8],
-				itemStyle:{
-					emphasis:{
-						barBorderRadius:7,
-					},
-					normal:{
-						barBorderRadius: 7,
-					}
-				}
-			},
-
-			{
-				name: '收藏量',
-				type: 'bar',
-				yAxisIndex: 1,
-				data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8],
-				itemStyle:{
-					emphasis:{
-						barBorderRadius:7,
-					},
-					normal:{
-						barBorderRadius: 7,
-					}
-				}
-			}
-
+		}
 		]
 	};
-	barMap.setOption(barMapOpt);
+	item_top.setOption(item_top_opt);
+	//加载json数据
+	$.ajax({
+			url: "/static/data/item/item_top.json",
+			dataType: "json"
+		})
+		.done(function (data) {
+			console.log('item_top : ', data);
+			item_top.setOption({
+				title: {
+					text: data.buy.name
+				},
+				xAxis: [{
+					data: data.buy.category
+				}],
+				yAxis: [{
+					min: data.buy.value[9],
+					max: data.buy.value[0],
+					name: data.buy.name,
+					axisLine: {
+						lineStyle: {
+							color: colors[0]
+						}
+					}
+				}],
+				series: [
+				{
+					name: data.buy.name,
+					data: data.buy.value,
+					color: colors[0]
+				}
+				]
+			});
+		}).fail(function (jqXHR) {
+			console.log("Ajax Fail: ", jqXHR.status, jqXHR.statusText);
+		});
+	$("#itemSelector").change(function () {
+		item_top.setOption(item_top_opt);
+		switch ($(this).val()) {
+			case "buy":
+				$.ajax({
+						url: "/static/data/item/item_top.json",
+						dataType: "json"
+					})
+					.done(function (data) {
+						console.log('item_top : ', data);
+						item_top.setOption({
+							title: {
+								text: data.buy.name
+							},
+							xAxis: [{
+								data: data.buy.category
+							}],
+							yAxis: [{
+								min: data.buy.value[9],
+								max: data.buy.value[0],
+								name: data.buy.name,
+								axisLine: {
+									lineStyle: {
+										color: colors[0]
+									}
+								}
+							}],
+							series: [{
+								name: data.buy.name,
+								data: data.buy.value,
+								color: colors[0]
+							}]
+						});
+					}).fail(function (jqXHR) {
+						console.log("Ajax Fail: ", jqXHR.status, jqXHR.statusText);
+					});
+				break;
+			case "click":
+				$.ajax({
+						url: "/static/data/item/item_top.json",
+						dataType: "json"
+					})
+					.done(function (data) {
+						console.log('item_top : ', data);
+						item_top.setOption({
+							title: {
+								text: data.click.name
+							},
+							xAxis: [{
+								data: data.click.category
+							}],
+							yAxis: [{
+								min: data.click.value[9],
+								max: data.click.value[0],
+								name: data.click.name,
+								axisLine: {
+									lineStyle: {
+										color: colors[1]
+									}
+								}
+							}],
+							series: [{
+								name: data.click.name,
+								data: data.click.value,
+								color: colors[1]
+							}]
+						});
+					}).fail(function (jqXHR) {
+						console.log("Ajax Fail: ", jqXHR.status, jqXHR.statusText);
+					});
+				break;
+			case "cart":
+				$.ajax({
+						url: "/static/data/item/item_top.json",
+						dataType: "json"
+					})
+					.done(function (data) {
+						console.log('item_top : ', data);
+						item_top.setOption({
+							title: {
+								text: data.cart.name
+							},
+							xAxis: [{
+								data: data.cart.category
+							}],
+							yAxis: [{
+								min: data.cart.value[9],
+								max: data.cart.value[0],
+								name: data.cart.name,
+								axisLine: {
+									lineStyle: {
+										color: colors[2]
+									}
+								}
+							}],
+							series: [{
+								name: data.cart.name,
+								data: data.cart.value,
+								color: colors[2]
+							}]
+						});
+					}).fail(function (jqXHR) {
+						console.log("Ajax Fail: ", jqXHR.status, jqXHR.statusText);
+					});
+				break;
+			case "collect":
+				$.ajax({
+						url: "/static/data/item/item_top.json",
+						dataType: "json"
+					})
+					.done(function (data) {
+						console.log('item_top : ', data);
+						item_top.setOption({
+							title: {
+								text: data.collect.name
+							},
+							xAxis: [{
+								data: data.collect.category
+							}],
+							yAxis: [{
+								min: data.collect.value[9],
+								max: data.collect.value[0],
+								name: data.collect.name,
+								axisLine: {
+									lineStyle: {
+										color: colors[3]
+									}
+								}
+							}],
+							series: [{
+								name: data.collect.name,
+								data: data.collect.value,
+								color: colors[3]
+							}]
+						});
+					}).fail(function (jqXHR) {
+						console.log("Ajax Fail: ", jqXHR.status, jqXHR.statusText);
+					});
+				break;
+		}
+	});
+
 	/********** 浏览器窗口改变时，重置报表大小 ****************/
 	window.onresize = function () {
-		barMap.resize();
+		item_top.resize();
 	}
 });

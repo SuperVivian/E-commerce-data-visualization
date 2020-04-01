@@ -1,7 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6a590a62-9049-4470-8b91-0f5585a648b7" name="Default Changelist" comment="" />
+    <list default="true" id="6a590a62-9049-4470-8b91-0f5585a648b7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/route/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/route/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/static/css/route.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/static/data/item/age_like_item.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/static/data/item/behavior_ratio.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/static/data/item/brand_price.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/static/data/item/item_top.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/static/data/item/user_type_price.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/static/data/route.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/static/js/d3-3-5-5.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/templates/route.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/item/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/item/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/css/item.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/css/item.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/css/user.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/css/user.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/data/item/recommend.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/data/item/recommend.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/js/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/js/item/map1.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/js/item/map1.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/js/item/map2.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/js/item/map2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/js/item/map3.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/js/item/map3.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/js/item/map4.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/js/item/map4.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/js/item/map5.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/js/item/map5.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/js/item/map6.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/js/item/map6.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/item.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/item.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/user.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/user.html" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,11 +47,15 @@
     </option>
   </component>
   <component name="ProjectId" id="1Y17IJmWPoVhc9vgUyirWNVUCKi" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../E-commerce-data-visualization - 副本" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -114,6 +146,7 @@
   </component>
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.js" />
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.css" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -127,5 +160,8 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>

@@ -1,0 +1,282 @@
+{
+    "title_text": [
+    "20068",
+    "4540032",
+    "77730480",
+    "3278173",
+    "66930"
+  ],
+    "top1": [
+        {
+            "name": "75-150",
+            "value": 887,
+            "textStyle": {
+                "normal": {
+                    "color": "#00CDE7"
+                },
+                "emphasis": {
+                    "fontSize": "60"
+                }
+            }
+        },
+        {
+            "name": "150-300",
+            "value": 1406,
+            "textStyle": {
+                "normal": {
+                    "color": "#2692DC"
+                },
+                "emphasis": {
+                    "fontSize": "60"
+                }
+            }
+        },
+        {
+            "name": "0-75",
+            "value": 320,
+            "textStyle": {
+                "normal": {
+                    "color": "#5577CF"
+                },
+                "emphasis": {
+                    "fontSize": "60"
+                }
+            }
+        },
+              {
+            "name": "300-400",
+            "value": 71,
+            "textStyle": {
+                "normal": {
+                    "color": "#DE7"
+                },
+                "emphasis": {
+                    "fontSize": "60"
+                }
+            }
+        },
+              {
+            "name": "400-1000",
+            "value": 38,
+            "textStyle": {
+                "normal": {
+                    "color": "#FFCDE7"
+                },
+                "emphasis": {
+                    "fontSize": "60"
+                }
+            }
+        }
+    ],
+    "top2": [
+      {
+          "name": "75-150",
+          "value": 1045,
+          "textStyle": {
+              "normal": {
+                  "color": "#00CDE7"
+              },
+              "emphasis": {
+                  "fontSize": "60"
+              }
+          }
+      },
+      {
+          "name": "150-300",
+          "value": 743,
+          "textStyle": {
+              "normal": {
+                  "color": "#2692DC"
+              },
+              "emphasis": {
+                  "fontSize": "60"
+              }
+          }
+      },
+      {
+          "name": "0-75",
+          "value": 68,
+          "textStyle": {
+              "normal": {
+                  "color": "#5577CF"
+              },
+              "emphasis": {
+                  "fontSize": "60"
+              }
+          }
+      },
+            {
+          "name": "300-400",
+          "value": 29,
+          "textStyle": {
+              "normal": {
+                  "color": "#DE7"
+              },
+              "emphasis": {
+                  "fontSize": "60"
+              }
+          }
+      },
+            {
+          "name": "400-1000",
+          "value": 18,
+          "textStyle": {
+              "normal": {
+                  "color": "#FFCDE7"
+              },
+              "emphasis": {
+                  "fontSize": "60"
+              }
+          }
+      }
+  ],
+    "top3": [
+    {
+        "name": "75-150",
+        "value": 1157,
+        "textStyle": {
+            "normal": {
+                "color": "#00CDE7"
+            },
+            "emphasis": {
+                "fontSize": "60"
+            }
+        }
+    },
+    {
+        "name": "150-300",
+        "value": 13,
+        "textStyle": {
+            "normal": {
+                "color": "#2692DC"
+            },
+            "emphasis": {
+                "fontSize": "60"
+            }
+        }
+    },
+    {
+        "name": "0-75",
+        "value": 413,
+        "textStyle": {
+            "normal": {
+                "color": "#5577CF"
+            },
+            "emphasis": {
+                "fontSize": "60"
+            }
+        }
+    },          {
+        "name": "400-1000",
+        "value": 5,
+        "textStyle": {
+            "normal": {
+                "color": "#FFCDE7"
+            },
+            "emphasis": {
+                "fontSize": "60"
+            }
+        }
+    }
+],
+    "top4": [
+    {
+        "name": "75-150",
+        "value": 729,
+        "textStyle": {
+            "normal": {
+                "color": "#00CDE7"
+            },
+            "emphasis": {
+                "fontSize": "60"
+            }
+        }
+    },
+    {
+        "name": "150-300",
+        "value": 504,
+        "textStyle": {
+            "normal": {
+                "color": "#2692DC"
+            },
+            "emphasis": {
+                "fontSize": "60"
+            }
+        }
+    },
+    {
+        "name": "0-75",
+        "value": 241,
+        "textStyle": {
+            "normal": {
+                "color": "#5577CF"
+            },
+            "emphasis": {
+                "fontSize": "60"
+            }
+        }
+    },
+          {
+        "name": "300-400",
+        "value": 29,
+        "textStyle": {
+            "normal": {
+                "color": "#DE7"
+            },
+            "emphasis": {
+                "fontSize": "60"
+            }
+        }
+    },
+          {
+        "name": "400-1000",
+        "value": 60,
+        "textStyle": {
+            "normal": {
+                "color": "#FFCDE7"
+            },
+            "emphasis": {
+                "fontSize": "60"
+            }
+        }
+    }
+],
+    "top5": [
+  {
+      "name": "75-150",
+      "value": 609,
+      "textStyle": {
+          "normal": {
+              "color": "#00CDE7"
+          },
+          "emphasis": {
+              "fontSize": "60"
+          }
+      }
+  },
+  {
+      "name": "150-300",
+      "value": 42,
+      "textStyle": {
+          "normal": {
+              "color": "#2692DC"
+          },
+          "emphasis": {
+              "fontSize": "60"
+          }
+      }
+  },
+  {
+      "name": "0-75",
+      "value": 850,
+      "textStyle": {
+          "normal": {
+              "color": "#5577CF"
+          },
+          "emphasis": {
+              "fontSize": "60"
+          }
+      }
+  }
+]
+}

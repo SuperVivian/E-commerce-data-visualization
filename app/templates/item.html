@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
     <title>商品销售数据大屏</title>
     <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}" />
@@ -14,8 +15,8 @@
 <body>
     <header id="header">
         <h3 class="header-title">商品销售数据大屏</h3>
-        <div class="header-info header-info-l">数据来源：淘宝</div>
-        <div class="header-info header-info-r">数据日期：<span id="nowDate"></span></div>
+        <div class="header-info header-info-l"><a class="page_a" href="{{url_for('main.index')}}">返回首页</a></div>
+        <div class="header-info header-info-r">数据日期：2019年6月10日-6月20日<span id="nowDate"></span></div>
     </header>
     <footer id="footer"></footer>
     <div id="container">
@@ -23,11 +24,9 @@
             <div class="flex-row" style="margin-bottom: -30px;">
                 <div class="flex-cell flex-cell-l">
                     <div class="chart-wrapper">
-
                         <div class="chart-div  chart-div-bg">
                             <div class="chart-title">用户分类行为统计</div>
-                            <div class="chart-loader" id="flyMap">
-
+                            <div class="chart-loader" id="behavior_ratio">
                             </div>
                         </div>
                     </div>
@@ -39,7 +38,7 @@
                         <div class="chart-div  chart-div-bg">
 
                             <div class="chart-title">各年龄段爱买商品</div>
-                            <div class="chart-loader" id="scatterMap">
+                            <div class="chart-loader" id="age_like_item">
 
                             </div>
                         </div>
@@ -53,14 +52,14 @@
                             <div class="chart-title">品牌价格热销区间</div>
                             <span class="brand-select">
                                 <select class="selector" id="brandSelector">
-                                    <option value="AJ" selected="selected">AJ</option>
-                                    <option value="李宁">李宁</option>
-                                    <option value="特步">特步</option>
-                                    <option value="阿迪达斯">阿迪达斯</option>
+                                    <option value="Top1" selected="selected">Top1</option>
+                                    <option value="Top2">Top2</option>
+                                    <option value="Top3">Top3</option>
+                                    <option value="Top4">Top4</option>
+                                    <option value="Top5">Top5</option>
                                 </select>
                             </span>
                             <div class="chart-loader" id="brandPriceMap">
-
                             </div>
                         </div>
                     </div>
@@ -68,50 +67,55 @@
             </div>
 
             <div class="flex-row">
-                <div class="flex-cell flex-cell-l">
+                <div class="flex-cell flex-cell-l-2">
                     <div class="chart-wrapper">
 
                         <div class="chart-div  chart-div-bg">
 
-                            <div class="chart-title">用户购买商品路径</div>
-                            <span class="user_line">
-                                <button class="btn_userLine">动态路径
-                                </button></span>
-                            <div class="chart-loader" id="worldMap">
+                            <div class="chart-title">
+                                <a class="page_a" href="{{ url_for('route.index') }}">用户购买商品路径</a>
+                            </div>
+                            <div class="chart-loader" id="user_route">
 
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="flex-cell flex-cell-c">
+                <div class="flex-cell flex-cell-c-2">
                     <div class="chart-wrapper">
 
                         <div class="chart-div  chart-div-bg">
-
-                            <div class="chart-title">商品销量Top10</div>
-                            <div class="chart-loader" id="barMap">
-
-                            </div>
+                            <div class="chart-title">商品操作量Top10</div>
+                                <span class="income-select">
+                                    <select class="selector" id="itemSelector">
+                                        <option value="buy" selected="selected">购买量</option>
+                                        <option value="click">点击量</option>
+                                        <option value="cart">购物车量</option>
+                                        <option value="collect">收藏量</option>
+                                    </select>
+                                </span>
+                             <div class="chart-loader" id="item_top"></div>
                         </div>
                     </div>
                 </div>
 
-                <div class="flex-cell flex-cell-r">
+                <div class="flex-cell flex-cell-r-2">
                     <div class="chart-wrapper">
 
                         <div class="chart-div  chart-div-bg">
-                            <div class="chart-title">不同人群消费习惯</div>
+                            <div class="chart-title">不同人群消费商品价格分布</div>
                             <span class="income-select">
                                 <select class="selector" id="incomeSelector">
-                                    <option value="highIncome" selected="selected">高收入</option>
-                                    <option value="mediunmIncome">中收入</option>
-                                    <option value="lowIncome">低收入</option>
+                                    <option value="user1" selected="selected">品质生活型</option>
+                                    <option value="user2">品牌导向型</option>
+                                    <option value="user3">犹豫不决型</option>
+                                    <option value="user4">奢侈享受型</option>
+                                    <option value="user5">理性消费型</option>
+                                    <option value="user6">知足常乐型</option>
                                 </select>
                             </span>
-                            <div class="chart-loader" id="cityMap">
-
-                            </div>
+                            <div class="chart-loader" id="user_type_price"></div>
                         </div>
                     </div>
                 </div>
@@ -119,90 +123,6 @@
 
         </div>
     </div>
-
-
-{#    <div class="wrapper">#}
-{#        <div class="container-fluid">#}
-{#            <div class="row fill-h">#}
-{#                <div class="col-lg-3 fill-h">#}
-{#                    <div class="xpanel-wrapper xpanel-wrapper-2">#}
-{#                        <div class="xpanel">#}
-{#                            <div class="title">#}
-{#                                <p>用户分类行为统计</p>#}
-{#                            </div>#}
-{#                            <!-- 用户行为：漏斗图 -->#}
-{#                            <div class="fill-h" id="flyMap"></div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <div class="xpanel-wrapper xpanel-wrapper-2">#}
-{#                        <div class="xpanel">#}
-{#                            <div class="title">#}
-{#                                <p>用户购买商品路径</p>#}
-{#                            </div>#}
-{#                            <span class="user_line">#}
-{#                                <button class="btn_userLine">动态路径#}
-{#                                </button></span>#}
-{#                            <!-- 用户购买商品路径：折线图 -->user.html#}
-{#                            <div class="fill-h" id="worldMap"></div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#                <div class="col-lg-6 fill-h">#}
-{#                    <div class="xpanel-wrapper xpanel-wrapper-1">#}
-{#                        <div class="xpanel">#}
-{#                            <div class="title">#}
-{#                                <p align="center">各年龄段爱买商品</p>#}
-{#                            </div>#}
-{#                            <!-- 各年龄段爱买商品：雷达图 -->#}
-{#                            <div class="fill-h" id="scatterMap"></div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <div class="xpanel-wrapper xpanel-wrapper-1">#}
-{#                        <div class="xpanel">#}
-{#                            <div class="title">#}
-{#                                <p align="center">商品销量Top10</p>#}
-{#                            </div>#}
-{#                            <!-- 商品销量Top10柱状图+折线图 -->#}
-{#                            <div class="fill-h" id="barMap"></div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#                <div class="col-lg-3 fill-h">#}
-{#                    <div class="xpanel-wrapper xpanel-wrapper-3">#}
-{#                        <div class="xpanel">#}
-{#                            <div class="title">#}
-{#                                <p>品牌价格热销区间</p>#}
-{#                            </div>#}
-{#                            <span class="brand-select">#}
-{#                                <select class="selector" id="brandSelector">#}
-{#                                    <option value="AJ" selected="selected">AJ</option>#}
-{#                                    <option value="李宁">李宁</option>#}
-{#                                    <option value="特步">特步</option>#}
-{#                                    <option value="阿迪达斯">阿迪达斯</option>#}
-{#                                </select></span>#}
-{#                            <!-- 品牌价格热销区间：词云图 -->#}
-{#                            <div class="fill-h" id="brandPriceMap"></div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <div class="xpanel-wrapper xpanel-wrapper-3">#}
-{#                        <div class="xpanel">#}
-{#                            <div class="title">#}
-{#                                <p>不同人群消费习惯</p>#}
-{#                            </div>#}
-{#                            <span class="income-select">#}
-{#                                <select class="selector" id="incomeSelector">#}
-{#                                    <option value="highIncome" selected="selected">高收入</option>#}
-{#                                    <option value="mediunmIncome">中收入</option>#}
-{#                                    <option value="lowIncome">低收入</option>#}
-{#                                </select></span>#}
-{#                            <!-- 不同人群消费习惯：饼图 -->#}
-{#                            <div class="fill-h" id="cityMap"></div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
     <script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/echarts.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/item/echarts-wordcloud.min.js') }}"></script>

@@ -1,14 +1,14 @@
 
     $(function() {
-
-        //获取当天日期
-        (function() {
-            const now = new Date();
-            const year = now.getFullYear();
-            const month = now.getMonth() + 1;
-            const day = now.getDate();
-            $("#nowDate").html(year + "年" + month + "月" + day + "日");
-        })();
+//
+//        //获取当天日期
+//        (function() {
+//            const now = new Date();
+//            const year = now.getFullYear();
+//            const month = now.getMonth() + 1;
+//            const day = now.getDate();
+//            $("#nowDate").html(year + "年" + month + "月" + day + "日");
+//        })();
 
 
 
@@ -501,11 +501,12 @@
                 splitNumber: 3,
                 color: ['#d94e5d','#eac736','#50a3ba'],
                 min: 0,
-                max: 10,
+                max: 3,
                 calculable: false,
                 orient: 'horizontal',
                 left: 'center',
                 bottom: '0%',
+                text:['推荐：Yellow 命中：Red','用户点击：Blue'],
                 textStyle:{
                     color:'#fff'
                 }

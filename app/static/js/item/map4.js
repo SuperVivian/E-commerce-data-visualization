@@ -1,26 +1,20 @@
 $(function () {
 	//******************* 折线图 ******************/
 	//初始化echarts实例
-	const worldMap = echarts.init(document.getElementById("worldMap"));
+	const user_route = echarts.init(document.getElementById("user_route"));
+	//-1：未开始；0：点击；1：收藏；2：加入购物车；3：购买
 	data = [
-		["06-05", "点击"],
-		["06-06", '点击'],
-		["06-07", '点击'],
-		["06-08", '购物车'],
-		["06-09", '点击'],
 		["06-10", '点击'],
-		["06-11", '点击'],
+		["06-11", '购买'],
 		["06-12", '点击'],
-		["06-13", '点击'],
+		["06-13", '购物车'],
 		["06-14", '点击'],
-		["06-15", '收藏'],
+		["06-15", '点击'],
 		["06-16", '点击'],
-		["06-17", '购物车'],
+		["06-17", '点击'],
 		["06-18", '点击'],
 		["06-19", '点击'],
-		["06-20", '点击'],
-		["06-21", '购买'],
-		["06-22", '点击']		
+		["06-20", '收藏']
 	];
 
 	var dateList = data.map(function (item) {
@@ -29,15 +23,15 @@ $(function () {
 	var valueList = data.map(function (item) {
 		return  item[1];	
 	});
-	const worldMapOpt = {
+	const user_route_opt = {
 		color:'#DE7',
 		title: [{
 			top: '0%',
 			left: 'center',
-			text: '李女士',
+			text: '王女士',
 			textStyle: {
 				color: "#fff",
-				fontSize:"15",				
+				fontSize:"20",
 			}
 		}],
 		tooltip: {
@@ -69,7 +63,7 @@ $(function () {
 		}],
 		grid:  {
 			left: '0%',
-			bottom: '25%',
+			bottom: '10%',
 			containLabel: true
 		},
 		series: [{
@@ -78,10 +72,10 @@ $(function () {
 			data: valueList
 		}]
 	};
-	worldMap.setOption(worldMapOpt);
+	user_route.setOption(user_route_opt);
 
 	/********** 浏览器窗口改变时，重置报表大小 ****************/
 	window.onresize = function () {
-		worldMap.resize();
+		user_route.resize();
 	}
 });

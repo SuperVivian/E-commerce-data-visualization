@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Time Use Simulation</title>
+   <!--  <link rel="stylesheet" href="css/route.css" type="text/css" media="screen" /> -->
+    <meta name="viewport"
+    content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <link rel="stylesheet" href="{{url_for('static',filename='css/route.css')}}" />
+<!--    <link rel="stylesheet" type="text/css" href="//cloud.typography.com/7626174/696048/css/fonts.css" />-->
+    <link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1">-->
+</head>
+<meta charset="utf-8">
+
+<body>
+    <header id="header">
+        <h3 class="header-title">电商数据分析大屏</h3>
+        <div class="header-info header-info-l"><a class="page_a" href="{{url_for('item.index')}}">返回商品大屏</a></div>
+        <div class="header-info header-info-r">数据日期：2019年6月10日-6月20日<span id="nowDate"></span></div>
+    </header>
+    <div id="main-wrapper">
+        <div id="sidebar">
+            <div id="current_time">6月10日</div>
+            <div id="speed">
+                <div class="togglebutton pause" data-val="pause">Pause</div>
+                <div class="togglebutton slow current" data-val="slow">Slow</div>
+                <div class="togglebutton fast" data-val="fast">Fast</div>
+            </div>
+        </div>
+        <div id="chart"></div>
+    </div>
+    <footer id="footer"></footer>
+    <script src="{{ url_for('static', filename='js/d3-3-5-5.min.js') }}"></script>
+ <!--    <script src="js/d3-3-5-5.min.js"></script> -->
+    <script>
+    window.onload = function() {
+        var USER_SPEED = "slow";
+
+        // var speeds = { "slow": 1200, "medium": 400, "fast": 100 };
+        var speeds = { "slow": 4800, "medium": 4800, "fast": 2400 };
+        var simtimer;
+
+        var margin = { top: 10, right: 9, bottom: 10, left: 9 };
+        margin.left = margin.right = width < 500 ? 3 : 7;
+        console.log(parseInt(d3.select("#chart").style('height'), 10));
+        var width = parseInt(d3.select("#chart").style('width'), 10) - margin.left - margin.right,
+            height = parseInt(d3.select("#chart").style('height'), 10) - margin.top - margin.bottom,
+            padding = 0.6,
+            maxRadius = width < 500 ? 2 : 3;
+
+        var x = d3.scale.linear()
+            .domain([1, 5])
+            .range([0, width - margin.left - margin.right]);
+
+        var y = d3.scale.linear()
+            .domain([1, 5])
+            .range([0, height - margin.top - margin.bottom]);
+
+        var sched_objs = [],
+            curr_minute = -1;
+
+        var foci = {
+            //未开始
+            "-1": { x: x(3), y: y(3), grp: "nothing" },
+            // 点击
+            "0": { x: x(2), y: y(2), grp: "clk" },
+            // 收藏
+            "1": { x: x(4), y: y(2), grp: "collect" },
+            // 加购
+            "2": { x: x(2), y: y(4), grp: "cart" },
+            // 购买
+            "3": { x: x(4), y: y(4), grp: "buy" },
+
+        }
+
+        var grpcnts = {
+            nothing: { m: 0, f: 0, label: "未开始", x: 3, y: 3 },
+            clk: { m: 0, f: 0, label: "点击", x: 2, y: 2 },
+            collect: { m: 0, f: 0, label: "收藏", x: 4, y: 2 },
+            cart: { m: 0, f: 0, label: "加入购物车", x: 2, y: 4 },
+            buy: { m: 0, f: 0, label: "购买", x: 4, y: 4 },
+        }
+
+        var notes_index = 0;
+
+
+        // Start the SVG
+        var svg = d3.select("#chart").append("svg")
+            .attr("width", width + margin.left)
+            .attr("height", height + margin.top)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
+        // Load data and let's do it.
+        d3.tsv("../static/data/route.csv", function(error, data) {
+
+            data.forEach(function(d) {
+                var day_array = d.route.split(",");
+                var activities = [];
+                for (var i = 0; i < day_array.length; i++) {
+                    // Duration
+                    if (i % 2 == 1) {
+                        activities.push({ 'act': day_array[i - 1], 'duration': +day_array[i] });
+                    }
+                }
+                sched_objs.push(activities);
+            });
+
+            sched_objs = sched_objs;
+
+
+            // A node for each person's schedule
+            var nodes = sched_objs.map(function(o, i) {
+
+                var act = o[0].act;
+                var init_x = foci[act].x + Math.random();
+                var init_y = foci[act].y + Math.random();
+                // var col = data[i].sex == "m" ? "#f5b170" : "#89f0ec";
+                var col = "#89f0ec";
+
+                grpcnts[foci[act].grp]["m"] += 1; //count ma & female
+
+                return {
+                    act: act,
+                    radius: maxRadius,
+                    x: init_x,
+                    y: init_y,
+                    color: col, //color(act),
+                    moves: 0,
+                    next_move_time: o[0].duration,
+                    sched: o,
+                }
+            });
+
+            var force = d3.layout.force()
+                .nodes(nodes)
+                .size([width, height])
+                // .links([])
+                .gravity(0)
+                .charge(0)
+                .friction(.9)
+                .on("tick", tick)
+                .start();
+
+            var circle = svg.selectAll("circle")
+                .data(nodes)
+                .enter().append("circle")
+                .attr("r", function(d) { return d.radius; })
+                .style("fill", function(d) { return d.color; });
+            // .call(force.drag);
+
+            // Activity group labels
+            var actlabel = svg.selectAll("text")
+                .data(d3.keys(grpcnts))
+                .enter().append("text")
+                .attr("class", "actlabel")
+                .attr("text-anchor", "middle")
+                .attr("x", d => x(grpcnts[d].x))
+                .attr("y", d => y(grpcnts[d].y))
+                .attr("dy", "-1.8em")
+                .text(d => grpcnts[d].label)
+            // .call(wrap, width/4);
+
+
+            // Update nodes based on activity and duration
+            function timer() {
+
+                force.resume();
+                curr_minute += 1;
+
+                // Update time
+                var true_minute = curr_minute % 11;
+                //console.log(true_minute);
+                d3.select("#current_time").text(minutesToTime(true_minute));
+
+                if (USER_SPEED != "pause") {
+                    simtimer = setTimeout(timer, speeds[USER_SPEED]);
+                }
+
+                d3.range(nodes.length).map(function(i) {
+                    // var curr_node = nodes[i],
+                    // curr_moves = nodes[i].moves;
+                    // Time to go to next activity
+                    if (nodes[i].next_move_time == curr_minute) {
+                        if (nodes[i].moves == nodes[i].sched.length - 1) { //重复
+                            nodes[i].moves = 0;
+                        } else {
+                            nodes[i].moves += 1;
+                        }
+
+
+                        // Move on to next activity
+                        nodes[i].act = nodes[i].sched[nodes[i].moves].act;
+
+                        // nodes[i].moves = nodes[i].moves;
+
+                        nodes[i].next_move_time += nodes[i].sched[nodes[i].moves].duration;
+                    }
+
+                });
+            }
+            // setTimeout(timer, speeds[USER_SPEED]);
+            timer();
+
+
+
+            function tick(e) {
+                //  console.log(e.alpha);
+                var k = 0.12 * e.alpha;
+
+                // Push nodes toward their designated focus.
+                nodes.forEach(function(o, i) {
+                    var curr_act = o.act;
+
+                    // Make sleep more sluggish moving.
+                    if (curr_act == "0") {
+                        var damper = 0.7;
+                    } else {
+                        var damper = 1;
+                    }
+                    o.color = color(curr_act);
+
+                    o.y += (foci[curr_act].y - o.y) * k * damper;
+                    o.x += (foci[curr_act].x + width * .01 - o.x) * k * damper;
+                    //  console.log(o.x,o.y);
+
+                });
+
+                circle
+                    .each(collide(.3))
+                    .style("fill", function(d) { return d.color; })
+                    .attr("cx", function(d) { return d.x; })
+                    .attr("cy", function(d) { return d.y; });
+            }
+
+
+            // Resolve collisions between nodes.
+            function collide(alpha) {
+                var quadtree = d3.geom.quadtree(nodes);
+                return function(d) {
+                    var r = d.radius + maxRadius + padding,
+                        nx1 = d.x - r,
+                        nx2 = d.x + r,
+                        ny1 = d.y - r,
+                        ny2 = d.y + r;
+                    quadtree.visit(function(quad, x1, y1, x2, y2) {
+                        if (quad.point && (quad.point !== d)) {
+                            var x = d.x - quad.point.x,
+                                y = d.y - quad.point.y,
+                                l = Math.sqrt(x * x + y * y),
+                                r = d.radius + quad.point.radius + (d.act !== quad.point.act) * padding;
+                            if (l < r) {
+                                l = (l - r) / l * alpha;
+                                d.x -= x *= l;
+                                d.y -= y *= l;
+                                quad.point.x += x;
+                                quad.point.y += y;
+                            }
+                        }
+                        return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
+                    });
+                };
+            }
+
+
+
+
+            // Speed toggle
+            d3.selectAll(".togglebutton")
+                .on("click", function() {
+                    if (d3.select(this).attr("data-val") == "pause") {
+                        d3.select(".pause").classed("current", true);
+                        d3.select(".slow").classed("current", false);
+                        d3.select(".fast").classed("current", false);
+                    } else if (d3.select(this).attr("data-val") == "slow") {
+                        d3.select(".pause").classed("current", false);
+                        d3.select(".slow").classed("current", true);
+                        d3.select(".fast").classed("current", false);
+                    } else {
+                        d3.select(".pause").classed("current", false);
+                        d3.select(".slow").classed("current", false);
+                        d3.select(".fast").classed("current", true);
+                    }
+
+                    force.resume();
+                    clearTimeout(simtimer);
+                    USER_SPEED = d3.select(this).attr("data-val");
+
+                    if (USER_SPEED != "pause") timer();
+                });
+        }); // @end d3.tsv
+
+
+
+        function color(activity) {
+
+            var colorByActivity = {
+                // Eating, leisure, personal care
+                "0": "#FFDC3D",
+                "-1": "#FFF5EE",
+                "1": "#F490B2",
+                "2": "#99D44D",
+                "3": "#00A9E4",
+            }
+
+            return colorByActivity[activity];
+
+        }
+
+
+
+        // Output readable percent based on count.
+        function readablePercent(n, total) {
+
+            var pct = 100 * n / total;
+            if (pct < 1 && pct > 0) {
+                pct = "<1%";
+            } else {
+                pct = Math.round(pct) + "%";
+            }
+
+            return pct;
+        }
+
+
+        // Minutes to time of day. Data is minutes from 4am.
+        function minutesToTime(m) {
+
+            return "6月" + (10 + m) + "日"
+        }
+
+        // For SVG text-wrapping
+        function wrap(text, width) {
+            text.each(function() {
+                var text = d3.select(this),
+                    words = text.text().split(/\s+/).reverse(),
+                    word,
+                    line = [],
+                    lineNumber = 0,
+                    lineHeight = 1.1, // ems
+                    x = text.attr("x"),
+                    y = text.attr("y"),
+                    dy = parseFloat(text.attr("dy")),
+                    tspan = text.text(null).append("tspan").attr("x", x).attr("y", y).attr("dy", dy + "em");
+                while (word = words.pop()) {
+                    line.push(word);
+                    tspan.text(line.join(" "));
+                    if (tspan.node().getComputedTextLength() > width) {
+                        line.pop();
+                        tspan.text(line.join(" "));
+                        line = [word];
+                        tspan = text.append("tspan").attr("x", x).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+                    }
+                }
+            });
+        }
+    }
+    </script>
