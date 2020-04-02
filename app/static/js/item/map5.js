@@ -7,7 +7,7 @@ $(function () {
 		color: colors,
 		grid: {
 			right: '5%',
-			left: '10%',
+			left: '16%',
 			bottom:'15%'
 		},
 		title: {
@@ -32,7 +32,10 @@ $(function () {
 				lineStyle: {
 					color: "#fff",
 				}
-			}
+			},
+			axisLabel: {
+                interval:0,//代表显示所有x轴标签显示
+            }
 		}],
 		yAxis: [{
 			type: 'value',

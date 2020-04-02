@@ -12,7 +12,7 @@
     <div class="header">
         <h3 class="header-title">用 户 画 像</h3>
         <div class="header-info header-info-l"><a  class="page_a" href="{{url_for('main.index')}}">返回首页</a></div>
-        <div class="header-info header-info-r">数据日期：2019年6月10日-6月20日<span id="nowDate"></span></div>
+        <div class="header-info header-info-r">当前数据日期：<span id="nowDate"></span></div>
     </div>
     <footer id="footer"></footer>
     <div class="wrapper">
@@ -206,6 +206,7 @@
             user_day = data.user_day;
             rollNum("totalUser", 0, user_day[0].total_user);
             rollNum("activeUser", 0, user_day[0].active_user);
+            $("#nowDate").html(user_day[0].date);
             $("#male").text(data.user_sex.male + "%");
             $("#female").text(data.user_sex.female + "%");
             change();
@@ -295,7 +296,7 @@
         let countUp = new CountUp(elId, startVal, endVal, n, 2.5, {
             useEasing: true,
             useGrouping: true,
-            separator: ',',
+            separator: '',
             decimal: '.'
         });
         if (!countUp.error) {
@@ -309,6 +310,7 @@
         if (i >= user_day.length) { i = 0; }
         $("#totalUser").text(user_day[i].total_user);
         $("#activeUser").text(user_day[i++].active_user);
+        $("#nowDate").html(user_day[i].date);
         setTimeout("change()", 3000);
     }
     //3个div的统一class = 'div'

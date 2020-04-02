@@ -1,4 +1,3 @@
-
     $(function() {
 //
 //        //获取当天日期
@@ -587,7 +586,8 @@
         }).fail(function(jqXHR, textStatus) {
             console.log("Ajax Error: ", textStatus);
         });
-
+    var dates=["10日","11日","12日","13日","14日","15日","16日","17日","18日","19日","20日"];
+    var index=0;
     function changeText() {
         let changeNumber1 = document.getElementById("changeNumber1");
         changeNumber1.appendChild(changeNumber1.firstChild);
@@ -597,8 +597,11 @@
         changeNumber3.appendChild(changeNumber3.firstChild);
         let changeNumber4 = document.getElementById("changeNumber4");
         changeNumber4.appendChild(changeNumber4.firstChild);
-        }
-        setInterval("changeText()", 1000);
+        $("#nowDate").html(dates[index]);
+        index=index+1;
+        index=index%dates.length;
+    }
+    setInterval("changeText()", 2000);
 
 
     let conversionNum = [];

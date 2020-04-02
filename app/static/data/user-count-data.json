@@ -6,46 +6,47 @@
     },
     "user_day": [
     {
+        "date": "2019年6月10日",
         "total_user": 2575726,
         "active_user": 41039
     },
-    {
+    {        "date": "2019年6月11日",
         "total_user": 2632944,
         "active_user": 62002
     },
-    {
+    {        "date": "2019年6月12日",
         "total_user": 2670544,
         "active_user": 42175
     },
-    {
+    {        "date": "2019年6月13日",
         "total_user": 3116558,
         "active_user": 42431
     },
-    {
+    {        "date": "2019年6月14日",
         "total_user": 2917011,
         "active_user": 43798
     },
-    {
+    {        "date": "2019年6月15日",
         "total_user": 4165275,
         "active_user": 52108
     },
-    {
+    {        "date": "2019年6月16日",
         "total_user": 5499514,
         "active_user": 39291
     },
-    {
+    {        "date": "2019年6月17日",
         "total_user": 3868152,
         "active_user": 59456
     },
-    {
+    {        "date": "2019年6月18日",
         "total_user": 4914913,
         "active_user": 46400
     },
-    {
+    {        "date": "2019年6月19日",
         "total_user": 2410197,
         "active_user": 52910
     } ,
-    {
+    {        "date": "2019年6月20日",
         "total_user": 2330324,
         "active_user": 36796
     }  ]
