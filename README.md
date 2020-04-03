@@ -7,11 +7,15 @@
 - 数据分析：Pandas/jupyter notebook
 - 后端：Flask
 
-### 大屏
-- 首页
-- 商品页
-- 用户页
-- 动态路径动画
+### 效果展示
+#### 首页大屏
+![首页大屏](result_images/首页.png)
+#### 商品大屏
+![商品大屏](result_images/商品大屏.png)
+#### 用户大屏
+![用户大屏](result_images/用户大屏.png)
+#### 动态路径大屏
+![动态路径](result_images/动态路径.png)
 ### 文件目录
 - app文件夹是网站,manage.py是网站启动脚本
 	- templates里面是html文件
