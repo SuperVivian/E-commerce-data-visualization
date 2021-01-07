@@ -42,7 +42,7 @@ Jinja2==2.9.6
 jsonschema==3.0.1
 jupyter-core==4.4.0
 lda==1.0.5
-lxml==3.7.3
+lxml==4.6.2
 Markdown==2.6.11
 MarkupSafe==1.0
 matplotlib==2.0.2
