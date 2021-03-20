@@ -38,7 +38,7 @@ ipython-genutils==0.2.0
 itsdangerous==0.24
 jdcal==1.4.1
 jieba==0.39
-Jinja2==2.9.6
+Jinja2==2.11.3
 jsonschema==3.0.1
 jupyter-core==4.4.0
 lda==1.0.5
