@@ -97,7 +97,7 @@ SQLAlchemy==1.1.14
 tensorflow==1.4.0
 tensorflow-tensorboard==0.4.0rc3
 traitlets==4.3.2
-Twisted==18.9.0
+Twisted==22.4.0
 tzlocal==1.5.1
 unicode==2.7
 urllib3==1.22
