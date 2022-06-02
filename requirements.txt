@@ -29,7 +29,7 @@ Flask-SQLAlchemy==2.2
 Flask-Uploads==0.2.1
 Flask-WTF==0.14.2
 forex-python==1.5
-html5lib==0.9999999
+html5lib==0.99999999
 hyperlink==18.0.0
 idna==2.6
 IMDbPY==6.9.dev20191022
