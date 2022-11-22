@@ -57,7 +57,7 @@ packaging==16.8
 pandas==0.20.3
 parsel==1.4.0
 pbr==3.1.1
-Pillow==3.4.2
+Pillow==9.3.0
 pipreqs==0.4.9
 plotly==3.8.1
 ply==3.10
